@@ -1,0 +1,265 @@
+---
+title: Event Utilities
+description: Learn about the utilities available within an event runtime.
+sidebar:
+    label: Utilities
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+When writing events for DaalBot, you have access to a variety of built-in utilities that help you interact with Discord and perform common tasks. These utilities are designed to make it easier to write event code without needing to import external modules.
+
+## Available Utilities
+### External Libraries (util.libraries)
+We have an exported set of external libraries that you can use within your event code. Libraries such as `discord.js` (v14, stripped), `node:crypto`, and `daalbot` (stripped version of our internal APIs) are available for use.
+
+#### discord
+This is a stripped version of `discord.js` v14, which provides the core functionality for interacting with the Discord API. Exported members are shown below:
+
+```js
+{
+    builder: {
+        ModalBuilder: DJS.ModalBuilder,
+        TextInputBuilder: DJS.TextInputBuilder,
+        EmbedBuilder: DJS.EmbedBuilder,
+        ActionRowBuilder: DJS.ActionRowBuilder,
+        ButtonBuilder: DJS.ButtonBuilder,
+        StringSelectMenuOptionBuilder: DJS.StringSelectMenuOptionBuilder,
+        StringSelectMenuBuilder: DJS.StringSelectMenuBuilder,
+        TextDisplayBuilder: DJS.TextDisplayBuilder,
+        SeparatorBuilder: DJS.SeparatorBuilder,
+        SectionBuilder: DJS.SectionBuilder,
+        ThumbnailBuilder: DJS.ThumbnailBuilder,
+        MediaGalleryBuilder: DJS.MediaGalleryBuilder,
+        MediaGalleryItemBuilder: DJS.MediaGalleryItemBuilder,
+        ChannelSelectMenuBuilder: DJS.ChannelSelectMenuBuilder,
+        AttachmentBuilder: DJS.AttachmentBuilder,
+        ContainerBuilder: DJS.ContainerBuilder,
+        LabelBuilder: DJS.LabelBuilder
+    },
+    enum: {
+        TextInputStyle: DJS.TextInputStyle,
+        ChannelType: DJS.ChannelType,
+        ButtonStyle: DJS.ButtonStyle,
+        MessageFlags: DJS.MessageFlags,
+        SeparatorSpacingSize: DJS.SeparatorSpacingSize,
+    },
+    // Everything below here is legacy, kept for backwards compatibility, but new code should use the `builder` and `enum` namespaces above.
+    embed: DJS.EmbedBuilder,
+    components: {
+        row: DJS.ActionRowBuilder,
+        button: DJS.ButtonBuilder,
+        selectMenu: {
+            string: {
+                option: DJS.StringSelectMenuOptionBuilder,
+                builder: DJS.StringSelectMenuBuilder
+            }
+        }
+    }
+}
+```
+
+#### crypto
+This is the built-in Node.js `crypto` module, which provides cryptographic functionality such as hashing and encryption.
+
+#### daalbot
+This is a stripped version of our internal DaalBot APIs, which provides various utilities for interacting with DaalBot features. Exported members are shown below:
+
+```js
+{
+    tb: { // daalbot.api.pasteapi
+        createPaste: async(string) => Promise<string> // pasteapi_create_paste
+    }
+}
+```
+
+#### load(module)
+This is a function that allows you to load extra external dependencies that are not included by default. **You need to request access to specific modules** by reaching out to us on our [support server](https://go.daalbot.xyz/HQ). Once granted, you can use the `load` function as shown below:
+
+```js
+const axios = util.libraries.load('axios');
+```
+
+### Utility Functions
+In addition to external libraries, we also provide some utility functions that help with common tasks.
+
+#### (Persistent) Variables
+You can use variables to store data that persists across event executions.
+
+Setting a variable:
+```js
+await util.variables.set('key', 'value', true); // (variableName, value, global) | 3rd option is "global" (whether to share variable across all events in the guild or not)
+```
+
+Getting a variable:
+```js
+const value = await util.variables.get('key', true); // (variableName, global)
+```
+#### Managed Database
+Modern DaalBot features use the managed database functionality, so there's a uniform way to access and manipulate data.
+
+Retrieving data:
+```js
+const data = await util.db.get('inviteTracking.json'); // (path) | path is relative to the guild's managed database root
+```
+
+<Aside type="danger">
+The following methods are most likely a bad idea to use, as direct database manipulation can lead to data corruption or unexpected behaviour. Unless you are absolutely sure of what you're doing, avoid using this utility and instead use the built-in feature APIs provided by DaalBot.
+</Aside>
+Storing data:
+```js
+await util.db.set('inviteTracking.json', data); // (path, value)
+```
+
+Deleting data:
+```js
+await util.db.delete('inviteTracking.json'); // (path)
+```
+
+## Feature APIs
+Some DaalBot features provide their own APIs for interacting with them. These APIs are usually exposed via the `util.features` namespace.
+
+### XP System
+This namespace (`util.features.xp`) provides methods for interacting with the XP system.
+
+Retrieving a user's XP data:
+```js
+const xpData = await util.features.xp.get('1234567890123456789'); // (userId)
+```
+
+Setting a user's XP data:
+```js
+await util.features.xp.set('1234567890123456789', 1234); // (userId, xp - 1000xp = 1 level)
+```
+
+### Welcomer
+This namespace (`util.features.welcomer`) provides methods for interacting with the Welcomer feature.
+
+Read the servers welcomer config:
+```js
+const config = await util.features.welcomer.getConfig();
+```
+Output example:
+```json
+{
+    "channel": "1234567890123456789", // Channel ID
+    "message": "Welcome to the server {user}!", // Message content
+    "embed": {
+        "title": "New member joined!",
+        "type": "rich",
+        "description": "This is member #{memberCount}.",
+        "url": null,
+        "timestamp": 0,
+        "color": null,
+        "fields": [],
+        "thumbnail": null,
+        "image": null,
+        "author": null,
+        "footer": null
+    }
+}
+```
+
+Setting the channel:
+```js
+await util.features.welcomer.setChannel('1234567890123456789'); // (channelId)
+```
+
+Setting the message:
+```js
+await util.features.welcomer.setMessage('Welcome to the server {user}!'); // (message)
+```
+
+Setting the embed:
+```js
+await util.features.welcomer.setEmbed({
+    title: "New member joined!",
+    type: "rich",
+    description: "This is member #{memberCount}.",
+    url: null,
+    timestamp: 0,
+    color: null,
+    fields: [],
+    thumbnail: null,
+    image: null,
+}); // (embed)
+```
+
+### Autorole
+This namespace (`util.features.autorole`) provides methods for interacting with the Autorole feature.
+
+Checking if a role is in the autorole list:
+```js
+const hasRole = await util.features.autorole.has('1234567890123456789'); // (role)
+```
+
+Adding a role to the autorole list:
+```js
+await util.features.autorole.add('1234567890123456789'); // (role)
+```
+
+Removing a role from the autorole list:
+```js
+await util.features.autorole.remove('1234567890123456789'); // (role)
+```
+
+Listing all autoroles:
+```js
+const roles = await util.features.autorole.list(); // Returns an array of role IDs (string[])
+```
+
+### Logging
+This namespace (`util.features.logging`) provides methods for interacting with the Logging feature.
+
+Checking if a certain log type is enabled:
+```js
+const isEnabled = await util.features.logging.get('messageDelete'); // (logType - Discord gateway event name)
+```
+
+Toggling a certain log type:
+```js
+await util.features.logging.set('messageDelete', true); // (logType - Discord gateway event name, enabled)
+```
+### Tickets
+This namespace (`util.features.tickets`) provides methods for interacting with the Tickets feature.
+
+#### Legacy
+The namespace `util.features.tickets.legacy` provides methods for interacting with the legacy Tickets feature.
+
+Getting the category ID where tickets are created:
+```js
+const categoryId = await util.features.tickets.legacy.getCategory();
+```
+
+Setting the category ID where tickets are created:
+```js
+await util.features.tickets.legacy.setCategory('1234567890123456789'); // (categoryId)
+```
+
+Getting the permissions for newly created tickets:
+```js
+const permissions = await util.features.tickets.legacy.getPermissions();
+```
+
+Permission object example:
+```json
+[
+    {
+        "role": "1234567890123456789",
+        "action": "allow"
+    },
+    {
+        "role": "9876543210987654321",
+        "action": "deny"
+    }
+]
+```
+
+Setting the permissions for newly created tickets:
+```js
+await util.features.tickets.legacy.setPermissions('1234567890123456789', 'allow'); // (roleId, action - "allow" | "deny")
+```
+
+<Aside>
+Tickets V2 support is coming soon! Keep an eye on this page and join our [support server](https://go.daalbot.xyz/HQ) for updates.
+</Aside>

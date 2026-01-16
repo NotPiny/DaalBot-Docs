@@ -1,0 +1,27 @@
+---
+title: Events Overview
+description: Learn how to use the powerful events automation system within DaalBot
+sidebar:
+    label: Overview
+---
+
+## What is an event?
+Events are a way to automate actions when events happen in your server. For example, you can create an event that will send a message to a channel when a user joins your server or create an event that only allows users to count in a channel. Events are a powerful way to automate actions in your server. **Events are simply JavaScript code that is executed when a specific event is triggered.**
+
+## What are the different types of events?
+DaalBot uses discord.js under the hood so most events that are available in discord.js are also available in DaalBot. We also have some custom events that are specific to DaalBot. For more information on the different event triggers available, check out the [Event Triggers](/features/events/triggers) page.
+
+## How to create an event?
+To create an event, you can use the [DaalBot Dashboard](https://dashboard.daalbot.xyz), or use the [event commands](/commands/guild/event) in Discord.
+
+## Limitations
+Events have some limitations to ensure the safety and security of your server and DaalBot. Here are some of the limitations:
+- **Modules**: With a few exceptions, you cannot import external modules in your event code. This means any `import` or `require` statements will not work as expected. This is to prevent potential security risks and ensure the stability of the event runtime. If you really need a specific module, please reach out to us on our [support server](https://go.daalbot.xyz/HQ) and we may consider adding it as a built-in utility or granting special access.
+- **Environment Variables**: You do not have access to environment variables in your event code. Instead, use the built-in utilities and APIs provided by DaalBot.
+- **Infinite Loops**: If we detect an infinite loop in your event code, we will avoid executing it to prevent server crashes. Make sure to test your code thoroughly to avoid infinite loops.
+- **Evaluation**: Any attempts to use `eval` or similar functions will be blocked for security reasons. Either through removal of such functions or by avoiding their execution.
+- **Accessing `client` objects**: Direct access to the `client` object is restricted. Instead, please use the scoped utilities provided from the event context.
+- **Excessive Unindentation**: If you attempt to close off the main function scope by unindenting excessively, this shouldn't be possible to do by accident as modern editors will warn you. However, if detected, we will prevent the code from executing.
+
+### What happens if I hit a limitation?
+If your event code hits a limitation during static analysis it will simply be skipped. If it hits a limitation during runtime (for example, trying to access an environment variable) we will attempt to cleanly cut out the offending variables or if it's a function that cannot be executed, the function will throw an error. Automated logging on security violations may be in place to monitor for potential abuse.

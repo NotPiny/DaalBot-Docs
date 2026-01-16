@@ -1,0 +1,82 @@
+---
+title: Roles Command
+description: Learn how to use the Roles command to manage roles within your guild.
+sidebar:
+    label: Roles
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+This command allows server administrators to manage roles within their guild. Users can link roles together so that when one role is assigned or removed, the linked role is also assigned or removed automatically.
+
+<Aside type="caution">
+Assigning roles to members requires DaalBot to have the appropriate permissions to manage roles in the server. Ensure that DaalBot's role is higher than the roles it needs to assign in the role hierarchy. If you are unsure on what this means, you can usually just drag DaalBot's role to the top of the role list in your server settings and we'll handle the rest.
+</Aside>
+
+## /roles link add
+This command allows users to link two roles together. When one role is assigned or removed, the linked role will also be assigned or removed.
+<Command>
+    <div slot="usage">
+        Use the command followed by the two roles you want to link.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        role1|Role|The first role to link.|Yes|N/A
+        role2|Role|The second role to link.|Yes|N/A
+        reverse|Boolean|Whether to link the roles both ways.|No|True, False
+    </div>
+    <div slot="examples">
+        * `/roles link add role1:@RoleA role2:@RoleB` - Links RoleA and RoleB together.
+        * `/roles link add role1:@RoleA role2:@RoleB reverse:true` - Links RoleA and RoleB together both ways.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Roles" permission to use this command.
+        * The bot needs the "Manage Roles" permission to manage roles.
+    </div>
+</Command>
+
+## /roles link remove
+This command allows users to unlink two previously linked roles. When one role is assigned or removed, the unlinked role will no longer be affected.
+<Command>
+    <div slot="usage">
+        Use the command followed by the two roles you want to unlink.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        role1|Role|The first role to unlink.|Yes|N/A
+        role2|Role|The second role to unlink.|Yes|N/A
+        reverse|Boolean|Whether to unlink the roles both ways.|No|True, False
+    </div>
+    <div slot="examples">
+        * `/roles link remove role1:@RoleA role2:@RoleB` - Unlinks RoleA and RoleB.
+        * `/roles link remove role1:@RoleA role2:@RoleB reverse:true` - Unlinks RoleA and RoleB both ways.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Roles" permission to use this command.
+        * The bot needs the "Manage Roles" permission to manage roles.
+    </div>
+</Command>
+
+## /roles link list
+This command allows users to list all roles linked to a specific role, or check if two roles are linked.
+<Command>
+    <div slot="usage">
+        Use the command followed by the role you want to check, and optionally a second role to see if they are linked.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        role1|Role|The role to view linked roles for.|Yes|N/A
+        role2|Role|The second role to check if linked.|No|N/A
+    </div>
+    <div slot="examples">  
+        * `/roles link list role1:@RoleA` - Lists all roles linked to RoleA.
+        * `/roles link list role1:@RoleA role2:@RoleB` - Checks if RoleA and RoleB are linked.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Roles" permission to use this command.
+    </div>
+</Command>

@@ -1,0 +1,37 @@
+---
+title: Ticket Command
+description: Learn how to use the Ticket command to manage support tickets within your guild.
+sidebar:
+    label: Ticket
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+This command allows server administrators to manage support tickets within their guild. Users can create ticket panels that allow members to open support tickets easily.
+
+## /ticket panel create
+This command allows users to create a ticket panel in a specified channel. Members can use the panel to create support tickets.
+<Command>
+    <div slot="usage">
+        Use the command followed by the channel you want to create the ticket panel in.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        channel|Channel|The channel to create the ticket panel in.|Yes|Text Channel
+        channel-name|String|Ticket channel name. Use `%%{ticketCount}%%` to add the ticket number.|No|N/A
+        category|Channel|The category for the ticket channels to be created in.|No|Category
+    </div>
+    <div slot="examples">
+        * `/ticket panel create channel:#support category:#tickets channel-name:help-%%{ticketCount}%%` - Creates a ticket panel in the #support channel with ticket channels named help-1, help-2, etc. under the #tickets category.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Guild" permission to use this command.
+        * The bot needs the "Send Messages" permission in the specified channel to create the ticket panel.
+    </div>
+</Command>
+
+<Aside type="danger">
+It currently isn't possible to edit or delete ticket panels once created. You can still delete the message containing the ticket panel, but it will leave the panel configuration intact.
+</Aside>

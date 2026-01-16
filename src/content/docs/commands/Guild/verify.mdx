@@ -1,0 +1,39 @@
+---
+title: Verify Command
+description: Learn how to use the Verify command to manage guild verification settings.
+sidebar:
+    label: Verify
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+This command allows server administrators to set up a verification system within their guild. Users can create a verification message with a button that members can click to receive a specified role.
+
+<Aside type="caution">
+Assigning roles to members requires DaalBot to have the appropriate permissions to manage roles in the server. Ensure that DaalBot's role is higher than the roles it needs to assign in the role hierarchy. If you are unsure on what this means, you can usually just drag DaalBot's role to the top of the role list in your server settings and we'll handle the rest.
+</Aside>
+
+## /verify
+This command allows users to create a verification message in a specified channel. Members can click the button on the message to verify themselves and receive a designated role.
+<Command>
+    <div slot="usage">
+        Use the command followed by the role you want to assign to verified users.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        verified_role|Role|The role to assign to verified users.|Yes|N/A
+    </div>
+    <div slot="examples">
+        * `/verify verified_role:@Member` - Creates a verification message in the current channel that assigns the @Member role to verified users.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Roles" and "Manage Channels" permissions to use this command.
+        * The bot needs the "Manage Roles" and "Send Messages" permissions to manage verification.
+    </div>
+</Command>
+
+<Aside>
+Once the command is used, you will be prompted to provide a message link to set up the verification button. You can also choose whether to have the bot automatically update channel permissions for verified users. For more details on setting up and managing verification, visit our [Verification](/features/verification) documentation.
+</Aside>

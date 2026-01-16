@@ -1,0 +1,34 @@
+---
+title: Event Triggers
+description: Learn about the different event triggers available in DaalBot
+sidebar:
+    label: Triggers
+---
+
+## What are event triggers?
+Event triggers are the specific events that can occur within your Discord server that will cause an event to execute. These triggers can be based on user actions, server changes, or other activities that happen in your server.
+
+## Trigger List
+Name | Description | Object Name
+---|---|---
+channelCreate | Triggered when a channel is created | channel
+channelDelete | Triggered when a channel is deleted | channel
+channelUpdate | Triggered when a channel is edited in some way | channel
+guildBanAdd | Triggered when a user is banned from the guild | ban
+guildBanRemove | Triggered when a user is unbanned from the guild | ban
+guildMemberAdd | Triggered when a user joins the guild | member
+guildMemberRemove | Triggered when a user leaves the guild | member
+guildMemberUpdate | Triggered when a guild member is updated (e.g., role change, nickname change) | member
+guildRoleCreate | Triggered when a role is created in the guild | role
+guildRoleDelete | Triggered when a role is deleted in the guild | role
+guildRoleUpdate | Triggered when a role is updated in the guild | role
+guildUpdate | Triggered when the guild is updated | guild
+guildWarnCreate | Triggered when a warning is created for a user (Only applies to DaalBot warnings) | warn
+guildWarnDelete | Triggered when a warning is deleted for a user (Only applies to DaalBot warnings) | warn
+interactionCreate | Triggered when an interaction is created (e.g., slash command, button press) | interaction
+messageCreate | Triggered when a message is created in a channel | message
+messageDelete | Triggered when a message is deleted from a channel | message
+messageReactionAdd | Triggered when a reaction is added to a message | reaction
+messageReactionRemove | Triggered when a reaction is removed from a message | reaction
+messageUpdate | Triggered when a message is edited in a channel | message
+

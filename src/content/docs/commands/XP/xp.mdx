@@ -1,0 +1,54 @@
+---
+title: XP Command
+description: XP management commands
+sidebar:
+    label: XP
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+## /xp grant
+Modifies the XP of a user
+
+<Command>
+	<div slot="params">
+		Parameter|Type|Description|Required|Choices
+		---|---|---|---|---
+		user|User|The user to modify the XP of|Yes|N/A
+		amount|Integer|The amount of XP|Yes|N/A
+		action|String|The action to perform|Yes|Add, Remove, Set
+	</div>
+	<div slot="permissions">
+		* You need the moderate members permission to use this command.
+	</div>
+</Command>
+## /xp reward
+Sets up a reward for levels
+
+<Aside type="caution">
+Assigning roles to members requires DaalBot to have the appropriate permissions to manage roles in the server. Ensure that DaalBot's role is higher than the roles it needs to assign in the role hierarchy. If you are unsure on what this means, you can usually just drag DaalBot's role to the top of the role list in your server settings and we'll handle the rest.
+</Aside>
+
+<Command>
+	<div slot="params">
+		Parameter|Type|Description|Required|Choices
+		---|---|---|---|---
+		level|Integer|The level to grant the reward upon reaching|Yes|N/A
+		role|Role|The role to grant upon reaching the level|Yes|N/A
+	</div>
+	<div slot="permissions">
+		* You need the manage roles permission to use this command.
+	</div>
+</Command>
+## /xp level
+Shows your or another members level
+
+<Command>
+	<div slot="params">
+		Parameter|Type|Description|Required|Choices
+		---|---|---|---|---
+		user|User|The user to show the level of|No|N/A
+	</div>
+
+</Command>

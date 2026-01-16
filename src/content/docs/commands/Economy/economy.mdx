@@ -1,0 +1,31 @@
+---
+title: Economy Command
+description: Commands related to DaalBot's economy system, including managing user coins and balances.
+sidebar:
+    label: Economy
+---
+
+import Command from '$lib/components/Command.astro';
+
+This command allows server administrators to manage the economy system within their server. Users can add, remove, set, or view the coin balance of other users.
+
+## /economy
+This command allows server administrators to manage the economy system within their server.
+<Command>
+    <div slot="usage">
+        Use the command followed by the user, action, and amount (if applicable) to modify a user's coin balance.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        user|User|The user to modify|Yes|N/A
+        action|String|The action to perform|Yes|Add, Remove, Set, View
+        amount|Integer|The amount to modify the user's coins by|No|N/A
+    </div>
+    <div slot="examples">
+        * `/economy user:@User action:add amount:100` - Adds 100 coins to the specified user's balance.
+        * `/economy user:@User action:view` - Views the specified user's current coin balance.
+        * `/economy user:@User action:remove amount:50` - Removes 50 coins from the specified user's balance.
+        * `/economy user:@User action:set amount:1000` - Sets the specified user's coin balance to 1000.
+    </div>
+</Command>

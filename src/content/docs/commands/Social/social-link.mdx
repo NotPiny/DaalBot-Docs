@@ -1,0 +1,63 @@
+---
+title: Social-link Command
+description: Modifies social feeds in the server.
+sidebar:
+    label: Social-link
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+<Aside type="caution">
+    This page was automatically generated from command data, if you know more about this command please edit this page. The source code can be found [here](https://github.com/DaalBot/Discord/tree/main/commands/Social/social-link.js).
+</Aside>
+
+## /social-link twitch add
+Adds a Twitch feed to a channel.
+
+<Command>
+	<div slot="params">
+		Parameter|Type|Description|Required|Choices
+		---|---|---|---|---
+		channel|String|The name of the twitch channel to add.|Yes|N/A
+		feed_channel|Channel|The channel to send the feed to.|Yes|N/A
+		role|Role|The role to ping when the stream goes live.|No|N/A
+	</div>
+
+	<div slot="permissions">
+		* You need the **Manage Webhooks** permission to run this command.
+	</div>
+</Command>
+
+## /social-link bluesky add
+Adds a Bluesky feed to a channel.
+
+<Command>
+	<div slot="params">
+		Parameter|Type|Description|Required|Choices
+		---|---|---|---|---
+		channel|Channel|The channel to add the feed to.|Yes|N/A
+		account|String|The account to add the feed from.|Yes|N/A
+		message|String|The message to send when a new post is detected. (must include %%\{LINK\}%%)|Yes|N/A
+	</div>
+
+	<div slot="permissions">
+		* You need the **Manage Webhooks** permission to run this command.
+	</div>
+</Command>
+
+## /social-link bluesky remove
+Removes a Bluesky feed from a channel.
+
+<Command>
+	<div slot="params">
+		Parameter|Type|Description|Required|Choices
+		---|---|---|---|---
+		channel|Channel|The channel to remove the feed from.|Yes|N/A
+		account|String|The account to remove the feed from. (Default: All)|No|N/A
+	</div>
+
+	<div slot="permissions">
+		* You need the **Manage Webhooks** permission to run this command.
+	</div>
+</Command>

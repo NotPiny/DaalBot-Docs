@@ -1,0 +1,58 @@
+---
+title: Autorole Command
+description: Commands related to managing autoroles within DaalBot.
+sidebar:
+    label: Autorole
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+This command allows server administrators to manage autoroles within their server. Users can set up roles that are automatically assigned to new members when they join the server.
+
+<Aside type="caution">
+Assigning roles to members requires DaalBot to have the appropriate permissions to manage roles in the server. Ensure that DaalBot's role is higher than the roles it needs to assign in the role hierarchy. If you are unsure on what this means, you can usually just drag DaalBot's role to the top of the role list in your server settings and we'll handle the rest.
+</Aside>
+
+## /autorole add
+This command allows users to add a role to the autorole list. When a new member joins the server, they will automatically be assigned this role.
+<Command>
+    <div slot="usage">
+        Use the command followed by the role you want to add to the autorole list.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        role|Role|The role to add to the autorole list.|Yes|N/A
+    </div>
+    <div slot="examples">
+        * `/autorole add role:@Member` - Adds the "Member" role to the autorole list.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Roles" permission to use this command.
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+## /autorole remove
+This command allows users to remove a role from the autorole list. The role will no longer be automatically assigned to new members when they join the server.
+<Command>
+    <div slot="usage">
+        Use the command followed by the role you want to remove from the autorole list.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        role|Role|The role to remove from the autorole list.|Yes|N/A
+    </div>
+    <div slot="examples">
+        * `/autorole remove role:@Member` - Removes the "Member" role from the autorole list.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Roles" permission to use this command.
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+## /autorole list
+This command allows users to list all roles in the autorole list. It displays the roles that will be automatically assigned to new members when they join the server. It has no additional options.

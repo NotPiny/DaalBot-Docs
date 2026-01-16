@@ -1,0 +1,28 @@
+{
+    "deno.enable": false,
+    "ltex.language": "en-GB",
+    "ltex.enabled": [
+        "markdown",
+        "md",
+        "mdx"
+    ],
+    // Not 100% sure why but ltex is still flagging my god damn code blocks in mdx files. Ignore them.
+    "ltex.markdown.nodes": {
+        "Code": "ignore",
+        "CodeBlock": "ignore",
+        "FencedCodeBlock": "ignore",
+        "InlineCode": "ignore"
+    },
+    "ltex.checkFrequency": "save",
+    "ltex.dictionary": {
+        "en-GB": [
+            "DaalBot",
+            "daalbot",
+            "const",
+            "mailto",
+            "xyz",
+            "div",
+            "params"
+        ]
+    }
+}

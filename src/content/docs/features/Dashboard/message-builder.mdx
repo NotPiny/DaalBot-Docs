@@ -1,0 +1,21 @@
+---
+title: Message Builder
+description: Create and customize rich messages using Discord's Components V2 format with DaalBot's message builder.
+---
+
+The message builder feature within DaalBot's dashboard allows server administrators to create and customize rich messages using Discord's Components V2 format.
+Messages can be built using either a visual editor through the dashboard interface called [Hex](https://hex.daalbot.xyz/components) (our homemade solution) or by directly inputting JSON code for more advanced users or external tools like [discord.builders](https://discord.builders/).<br/>
+
+## Accessing the Message Builder
+To access the message builder, navigate to the [DaalBot Dashboard](https://dashboard.daalbot.xyz) and select your server. From there, select the "Message Builder" option under tools.
+
+## Input Methods
+The message builder supports two primary input methods:
+* Hex: A simple to use visual editor that allows you to create messages without ever needing to touch technical details such as JSON.
+* JSON: For users familiar with Discord's Components V2 format (or using external tools), you can directly input JSON code to define your message structure.
+
+## Caveats
+* The message builder doesn't currently support editing messages that have already been sent. You will need to create a new message if you wish to make changes. (We are working on adding this feature in the future!)
+* We do not check for JSON validity. If you input invalid JSON, the message will fail to send. Make sure to [validate your JSON](https://jsonlint.com/) and ensure it adheres to [Discord's Components V2 format](https://discord.com/developers/docs/components/reference).
+* Hex isn't perfect and may have some limitations or bugs. If you encounter any issues, please report them to us, so we can improve the tool.
+* Due to Discord limitations, messages created with the message builder cannot exceed 2000 characters in length.

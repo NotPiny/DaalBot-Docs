@@ -1,0 +1,46 @@
+---
+title: Webhook Command
+description: Learn how to use the Webhook command to manage webhooks within your guild.
+sidebar:
+    label: Webhook
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+This command allows server administrators to manage webhooks owned by the bot within their guild. Users can create new webhooks in specified channels or list existing webhooks owned by the bot.
+
+<Aside>
+Webhooks created using this command can only be used by the bot itself.
+</Aside>
+
+## /webhook create
+This command allows users to create a new webhook in a specified channel.
+<Command>
+    <div slot="usage">
+        Use the command followed by the channel and webhook name.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        channel|Channel|The channel to create the webhook in.|Yes|Text Channel, Announcement Channel
+        name|String|The name of the webhook.|Yes|N/A
+    </div>
+    <div slot="examples">
+        * `/webhook create channel:#general name:My Webhook` - Creates a webhook named "My Webhook" in the #general channel.
+    </div>
+    <div slot="permissions">
+        * Both you and the bot need the "Manage Webhooks" permission to use this command.
+    </div>
+</Command>
+
+## /webhook list
+This command allows users to list all webhooks owned by the bot in the current channel.
+<Command>
+    <div slot="usage">
+        Use the command without any additional parameters.
+    </div>
+    <div slot="examples">
+        * `/webhook list` - Lists all webhooks owned by the bot in the current channel.
+    </div>
+</Command>

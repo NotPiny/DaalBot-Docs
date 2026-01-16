@@ -1,0 +1,48 @@
+---
+title: Button Command
+description: Learn how to use the Button command to create interactive button messages within your guild.
+sidebar:
+    label: Button
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+This command allows server administrators to create interactive button messages within their guild. Users can set up messages with buttons that members can click to perform specific actions, such as assigning roles or triggering events.
+
+<Aside type="danger">
+This command has not been updated to support the new Components V2 system. As a result, buttons added using this command may not function as expected. Please use caution when utilizing this command until it has been updated.
+</Aside>
+
+## /button add
+This command allows users to add a button to an existing message. Users can specify the button label, style, URL, emoji, and whether the button should be disabled.
+<Command>
+    <div slot="usage">
+        Use the command followed by the message ID, button label, and optional parameters.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        message|String|The ID of the message to add the button to.|Yes|N/A
+        label|String|The label of the button.|Yes|N/A
+        style|String|The style of the button.|No|Primary (Blue), Secondary (Grey), Success (Green), Danger (Red)
+        url|String|The URL the button should open.|No|N/A
+        emoji|String|The emoji to display on the button.|No|N/A
+        disabled|Boolean|Whether the button should be disabled.|No|N/A
+        id|String|The ID of the button.|No|N/A
+    </div>
+    <div slot="examples">
+        * `/button add message:123456789012345678 label:Click Me style:Primary` - Adds a primary button labelled "Click Me" to the specified message.
+        * `/button add message:123456789012345678 label:Visit Website style:Link url:https://example.com` - Adds a link button labelled "Visit Website" that opens the specified URL.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Webhooks" permission to use this command.
+    </div>
+</Command>
+
+<Aside type="caution">
+Buttons can only be added to messages sent by the bot itself. Make sure to provide the correct message ID or link when using this command.
+</Aside>
+<Aside type="caution">
+Removing buttons from messages is not currently supported. Once a button is added to a message, it cannot be removed or edited through this command.
+</Aside>

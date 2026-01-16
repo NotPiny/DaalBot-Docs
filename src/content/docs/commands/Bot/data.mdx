@@ -1,0 +1,78 @@
+---
+title: Data Command
+description: Commands related to data management within DaalBot.
+sidebar:
+    label: Data
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+This command (and its subcommands) allows users to manage data within DaalBot. These should fulfil a variety of GDPR and data management needs but if you need any additional functionality please reach out on our [Support Server](https://go.daalbot.xyz/HQ) or email [privacy@daalbot.xyz](mailto:privacy@daalbot.xyz).
+
+## /data info policy
+This command is pretty simple, it returns a link to DaalBot's privacy policy.
+
+<Aside>Actions on user data currently isn't available in an automated fashion, if this is something you need please [email us](mailto:privacy@daalbot.xyz).</Aside>
+<Aside type="caution">
+Automatic data actions are limited to specific paths and data types. If you require data actions outside these limitations, please [contact us via email](mailto:privacy@daalbot.xyz).
+</Aside>
+
+## /data actions download
+This command allows users to download data that DaalBot has stored about their server.
+<Command>
+    <div slot="usage">
+        Execute the command and choose your preferred delivery method. Selecting automatic will result in a response containing a .zip file with all your data. Choosing manual provides a link to create a support ticket for data retrieval.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        type|String|How the data should be retrieved|Yes|Automatic, Manual (Support Ticket)
+    </div>
+    <div slot="examples">
+        * `/data actions download type:Automatic` - Downloads the data as a JSON file.
+        * `/data actions download type:Manual` - Provides a link to open a support ticket to request your data.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+## /data actions delete
+This command allows users to delete data that DaalBot has stored about their server.
+<Command>
+    <div slot="usage">
+        Run the command by choosing which data type to remove and setting a deletion timeframe. Once the specified period elapses, your data is permanently erased from DaalBot's systems. This action cannot be undone. Due to our backup procedures, complete removal from all systems may require additional time.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        type|String|The type of data to delete|Yes|User (NI), Server
+        delay|String|The delay before the data is deleted|Yes|1 Day, 3 Days, 1 Week, 1 Month
+    </div>
+    <div slot="examples">
+        * `/data actions delete type:Server delay:1 Week` - Deletes all server data after 1 week.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+## /data actions cancel
+This command allows users to cancel a pending data deletion request.
+<Command>
+    <div slot="usage">
+        Use this command to stop a scheduled data deletion by specifying the data type. Any pending deletion matching that type will be cancelled.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        type|String|The type of data to cancel|Yes|User (NI), Server
+    </div>
+    <div slot="examples">
+        * `/data actions cancel type:Server` - Cancels a pending server data deletion.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>

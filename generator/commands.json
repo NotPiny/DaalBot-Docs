@@ -1,0 +1,1751 @@
+[
+    {
+        "name": "data",
+        "description": "Modfies / Gets / Deletes data from the bot",
+        "category": "Bot",
+        "type": "SLASH",
+        "testOnly": false,
+        "options": [
+            {
+                "name": "info",
+                "description": "Gets info about data from the bot",
+                "type": 2,
+                "options": [
+                    {
+                        "name": "policy",
+                        "description": "Gets info about the privacy policy",
+                        "type": 1
+                    }
+                ]
+            },
+            {
+                "name": "actions",
+                "description": "Modifies data from the bot",
+                "type": 2,
+                "options": [
+                    {
+                        "name": "download",
+                        "description": "Downloads data for the guild.",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "type",
+                                "description": "How the data should be retrieved",
+                                "type": 3,
+                                "required": true,
+                                "choices": [
+                                    {
+                                        "name": "Automatic",
+                                        "value": "auto"
+                                    },
+                                    {
+                                        "name": "Manual (Support Ticket)",
+                                        "value": "manual"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "delete",
+                        "description": "Deletes data from the bot",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "type",
+                                "description": "The type of data to delete",
+                                "type": 3,
+                                "required": true,
+                                "choices": [
+                                    {
+                                        "name": "User (Data that includes your user)",
+                                        "value": "user"
+                                    },
+                                    {
+                                        "name": "Server (Data that includes the current server)",
+                                        "value": "guild"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "delay",
+                                "description": "The delay before the data is deleted",
+                                "type": 3,
+                                "required": true,
+                                "choices": [
+                                    {
+                                        "name": "1 Day",
+                                        "value": "86400000"
+                                    },
+                                    {
+                                        "name": "3 Days",
+                                        "value": "259200000"
+                                    },
+                                    {
+                                        "name": "1 Week",
+                                        "value": "604800000"
+                                    },
+                                    {
+                                        "name": "1 Month",
+                                        "value": "2592000000"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "cancel",
+                        "description": "Cancels a deletion of data from the bot",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "type",
+                                "description": "The type of data to cancel",
+                                "type": 3,
+                                "required": true,
+                                "choices": [
+                                    {
+                                        "name": "User (Data that includes your user)",
+                                        "value": "user"
+                                    },
+                                    {
+                                        "name": "Server (Data that includes the current server)",
+                                        "value": "guild"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "economy",
+        "description": "Modify the economy system",
+        "category": "Econ",
+        "type": "SLASH",
+        "guildOnly": true,
+        "testOnly": false,
+        "options": [
+            {
+                "name": "user",
+                "description": "The user to modify",
+                "type": 6,
+                "required": true
+            },
+            {
+                "name": "action",
+                "description": "The action to perform",
+                "type": 3,
+                "required": true,
+                "choices": [
+                    {
+                        "name": "Add",
+                        "value": "add"
+                    },
+                    {
+                        "name": "Remove",
+                        "value": "remove"
+                    },
+                    {
+                        "name": "Set",
+                        "value": "set"
+                    },
+                    {
+                        "name": "View",
+                        "value": "view"
+                    }
+                ]
+            },
+            {
+                "name": "amount",
+                "description": "The amount to modify the user's coins by",
+                "type": 4,
+                "required": false
+            }
+        ],
+        "permissions": [
+            "32"
+        ]
+    },
+    {
+        "name": "shop",
+        "description": "Buy items with your coins",
+        "category": "Econ",
+        "type": "SLASH",
+        "guildOnly": true,
+        "testOnly": false
+    },
+    {
+        "name": "guess",
+        "description": "Guess a number between 1 and 100 and win xp",
+        "category": "Games",
+        "slash": true
+    },
+    {
+        "name": "autorole",
+        "description": "Sets the roles to add when a member joins for the server.",
+        "category": "Guild",
+        "permissions": [
+            "268435456",
+            "32"
+        ],
+        "slash": true,
+        "testOnly": false,
+        "guildOnly": true,
+        "options": [
+            {
+                "name": "add",
+                "description": "Adds a role to the autorole list.",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "role",
+                        "description": "The role to add to the autorole list.",
+                        "type": 8,
+                        "required": true
+                    }
+                ]
+            },
+            {
+                "name": "remove",
+                "description": "Removes a role from the autorole list.",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "role",
+                        "description": "The role to remove from the autorole list.",
+                        "type": 8,
+                        "required": true
+                    }
+                ]
+            },
+            {
+                "name": "list",
+                "description": "Lists the roles in the autorole list.",
+                "type": 1
+            }
+        ]
+    },
+    {
+        "name": "cc",
+        "description": "Everything to do with custom commands",
+        "category": "Guild",
+        "slash": true,
+        "testOnly": false,
+        "guildOnly": true,
+        "permissions": [
+            "32"
+        ],
+        "options": [
+            {
+                "name": "create",
+                "description": "Creates a custom command",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "name",
+                        "description": "The name of the custom command",
+                        "type": 3,
+                        "required": true
+                    },
+                    {
+                        "name": "description",
+                        "description": "The description of the custom command",
+                        "type": 3,
+                        "required": true
+                    },
+                    {
+                        "name": "options",
+                        "description": "JSON representation of a discord.js options array",
+                        "type": 3,
+                        "required": false
+                    }
+                ]
+            },
+            {
+                "name": "delete",
+                "description": "Deletes a custom command",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "name",
+                        "description": "The name of the custom command",
+                        "type": 3,
+                        "required": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "config",
+        "description": "Configure the bot for your server",
+        "category": "Guild",
+        "guildOnly": true,
+        "testOnly": false,
+        "slash": true,
+        "permissions": [
+            "32"
+        ],
+        "options": []
+    },
+    {
+        "name": "event",
+        "description": "Modifies events for the guild.",
+        "category": "Guild",
+        "testOnly": false,
+        "guildOnly": true,
+        "permissions": [
+            "32"
+        ],
+        "options": [
+            {
+                "name": "create",
+                "description": "Creates an event.",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "trigger",
+                        "description": "The gateway event that triggers the event.",
+                        "type": 3,
+                        "required": true,
+                        "choices": [
+                            {
+                                "name": "Message Create",
+                                "value": "messageCreate"
+                            },
+                            {
+                                "name": "Message Update",
+                                "value": "messageUpdate"
+                            },
+                            {
+                                "name": "Message Delete",
+                                "value": "messageDelete"
+                            },
+                            {
+                                "name": "Channel Create",
+                                "value": "channelCreate"
+                            },
+                            {
+                                "name": "Channel Update",
+                                "value": "channelUpdate"
+                            },
+                            {
+                                "name": "Channel Delete",
+                                "value": "channelDelete"
+                            },
+                            {
+                                "name": "Guild Update",
+                                "value": "guildUpdate"
+                            },
+                            {
+                                "name": "Guild Ban Add",
+                                "value": "guildBanAdd"
+                            },
+                            {
+                                "name": "Guild Ban Remove",
+                                "value": "guildBanRemove"
+                            },
+                            {
+                                "name": "Guild Member Add",
+                                "value": "guildMemberAdd"
+                            },
+                            {
+                                "name": "Guild Member Remove",
+                                "value": "guildMemberRemove"
+                            },
+                            {
+                                "name": "Guild Member Update",
+                                "value": "guildMemberUpdate"
+                            },
+                            {
+                                "name": "Guild Role Create",
+                                "value": "guildRoleCreate"
+                            },
+                            {
+                                "name": "Guild Role Update",
+                                "value": "guildRoleUpdate"
+                            },
+                            {
+                                "name": "Guild Role Remove",
+                                "value": "guildRoleRemove"
+                            },
+                            {
+                                "name": "Message Reaction Add",
+                                "value": "messageReactionAdd"
+                            },
+                            {
+                                "name": "Message Reaction Remove",
+                                "value": "messageReactionAdd"
+                            },
+                            {
+                                "name": "Interaction Create",
+                                "value": "interactionCreate"
+                            },
+                            {
+                                "name": "Voice State Update",
+                                "value": "voiceStateUpdate"
+                            },
+                            {
+                                "name": "Guild Warn Create",
+                                "value": "guildWarnCreate"
+                            },
+                            {
+                                "name": "Guild Warn Delete",
+                                "value": "guildWarnDelete"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "delete",
+                "description": "Deletes an event.",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "event",
+                        "description": "The id for the event you want to delete",
+                        "type": 3,
+                        "required": true
+                    }
+                ]
+            },
+            {
+                "name": "list",
+                "description": "Lists all events.",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "trigger",
+                        "description": "The gateway event that triggers the event.",
+                        "type": 3,
+                        "required": false,
+                        "choices": [
+                            {
+                                "name": "Message Create",
+                                "value": "messageCreate"
+                            },
+                            {
+                                "name": "Message Update",
+                                "value": "messageUpdate"
+                            },
+                            {
+                                "name": "Message Delete",
+                                "value": "messageDelete"
+                            },
+                            {
+                                "name": "Channel Create",
+                                "value": "channelCreate"
+                            },
+                            {
+                                "name": "Channel Update",
+                                "value": "channelUpdate"
+                            },
+                            {
+                                "name": "Channel Delete",
+                                "value": "channelDelete"
+                            },
+                            {
+                                "name": "Guild Update",
+                                "value": "guildUpdate"
+                            },
+                            {
+                                "name": "Guild Ban Add",
+                                "value": "guildBanAdd"
+                            },
+                            {
+                                "name": "Guild Ban Remove",
+                                "value": "guildBanRemove"
+                            },
+                            {
+                                "name": "Guild Member Add",
+                                "value": "guildMemberAdd"
+                            },
+                            {
+                                "name": "Guild Member Remove",
+                                "value": "guildMemberRemove"
+                            },
+                            {
+                                "name": "Guild Member Update",
+                                "value": "guildMemberUpdate"
+                            },
+                            {
+                                "name": "Guild Role Create",
+                                "value": "guildRoleCreate"
+                            },
+                            {
+                                "name": "Guild Role Update",
+                                "value": "guildRoleUpdate"
+                            },
+                            {
+                                "name": "Guild Role Remove",
+                                "value": "guildRoleRemove"
+                            },
+                            {
+                                "name": "Message Reaction Add",
+                                "value": "messageReactionAdd"
+                            },
+                            {
+                                "name": "Message Reaction Remove",
+                                "value": "messageReactionAdd"
+                            },
+                            {
+                                "name": "Interaction Create",
+                                "value": "interactionCreate"
+                            },
+                            {
+                                "name": "Voice State Update",
+                                "value": "voiceStateUpdate"
+                            },
+                            {
+                                "name": "Guild Warn Create",
+                                "value": "guildWarnCreate"
+                            },
+                            {
+                                "name": "Guild Warn Delete",
+                                "value": "guildWarnDelete"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "share",
+                "description": "Makes an event public so it can be used by other servers.",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "event",
+                        "description": "The id for the event you want to share",
+                        "type": 3,
+                        "required": true
+                    }
+                ]
+            },
+            {
+                "name": "unshare",
+                "description": "Makes an event private so it can only be used by this server.",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "event",
+                        "description": "The id for the event you want to unshare",
+                        "type": 3,
+                        "required": true
+                    }
+                ]
+            },
+            {
+                "name": "import",
+                "description": "Imports an event from a id.",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "event",
+                        "description": "The id for the event you want to import",
+                        "type": 3,
+                        "required": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "roles",
+        "description": "Modifies role related settings within the server.",
+        "category": "Guild",
+        "slash": true,
+        "testOnly": false,
+        "guildOnly": true,
+        "permissions": [
+            "268435456"
+        ],
+        "options": [
+            {
+                "name": "link",
+                "description": "Links two roles.",
+                "type": 2,
+                "options": [
+                    {
+                        "name": "add",
+                        "description": "Adds a linked role set.",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "role1",
+                                "description": "The first role to link.",
+                                "type": 8,
+                                "required": true
+                            },
+                            {
+                                "name": "role2",
+                                "description": "The second role to link.",
+                                "type": 8,
+                                "required": true
+                            },
+                            {
+                                "name": "reverse",
+                                "description": "Whether or not to link the roles together or just one way.",
+                                "type": 5,
+                                "required": false
+                            }
+                        ]
+                    },
+                    {
+                        "name": "remove",
+                        "description": "Removes a linked role set.",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "role1",
+                                "description": "The first role to unlink.",
+                                "type": 8,
+                                "required": true
+                            },
+                            {
+                                "name": "role2",
+                                "description": "The second role to unlink.",
+                                "type": 8,
+                                "required": true
+                            },
+                            {
+                                "name": "reverse",
+                                "description": "Whether or not to apply the unlinking to both roles.",
+                                "type": 5,
+                                "required": false
+                            }
+                        ]
+                    },
+                    {
+                        "name": "list",
+                        "description": "Lists all linked roles.",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "role1",
+                                "description": "The role to view linked roles for.",
+                                "type": 8,
+                                "required": true
+                            },
+                            {
+                                "name": "role2",
+                                "description": "If specified check if the two are linked.",
+                                "type": 8,
+                                "required": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "ticket",
+        "description": "Manages tickets for the server.",
+        "category": "Guild",
+        "type": "SLASH",
+        "testOnly": false,
+        "guildOnly": true,
+        "permissions": [
+            "32"
+        ],
+        "options": [
+            {
+                "name": "panel",
+                "description": "Settings related to the ticket panel.",
+                "type": 2,
+                "options": [
+                    {
+                        "name": "create",
+                        "description": "Create a ticket panel.",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "channel",
+                                "description": "The channel to create the ticket panel in.",
+                                "type": 7,
+                                "channel_types": [
+                                    0
+                                ],
+                                "required": true
+                            },
+                            {
+                                "name": "channel-name",
+                                "description": "Ticket channel name. Use `%%{ticketCount}%%` to add the ticket number.",
+                                "type": 3,
+                                "required": false
+                            },
+                            {
+                                "name": "category",
+                                "description": "The category for the ticket channels to be created in.",
+                                "type": 7,
+                                "channel_types": [
+                                    4
+                                ],
+                                "required": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "category": "Guild",
+        "description": "Creates a verification message in the server",
+        "guildOnly": true,
+        "permissions": [
+            "268435456",
+            "16"
+        ],
+        "testOnly": false,
+        "type": "SLASH",
+        "options": [
+            {
+                "name": "verified_role",
+                "description": "The role to give to verified users",
+                "type": 8,
+                "required": true
+            }
+        ],
+        "name": "verify"
+    },
+    {
+        "category": "Guild",
+        "description": "Sets the auto welcome settings for the server",
+        "slash": true,
+        "guildOnly": true,
+        "permissions": [
+            "32"
+        ],
+        "options": [
+            {
+                "name": "channel",
+                "description": "The channel to send the welcome message in",
+                "type": 7,
+                "required": true
+            },
+            {
+                "name": "message",
+                "description": "The message to send when a user joins the server (Use {user} to ping the user)",
+                "type": 3,
+                "required": true
+            },
+            {
+                "name": "embed",
+                "description": "Embed json (/embed to create)",
+                "type": 3,
+                "required": false
+            }
+        ],
+        "name": "welcome"
+    },
+    {
+        "name": "button",
+        "description": "Modifies buttons in a message.",
+        "category": "Message",
+        "options": [
+            {
+                "name": "add",
+                "type": 1,
+                "description": "Adds a button to a message.",
+                "options": [
+                    {
+                        "name": "message",
+                        "description": "The message to add the button to.",
+                        "type": 3,
+                        "required": true
+                    },
+                    {
+                        "name": "label",
+                        "description": "The label of the button.",
+                        "type": 3,
+                        "required": true
+                    },
+                    {
+                        "name": "style",
+                        "description": "The style of the button.",
+                        "type": 3,
+                        "choices": [
+                            {
+                                "name": "Primary (Blue)",
+                                "value": "1"
+                            },
+                            {
+                                "name": "Secondary (Grey)",
+                                "value": "2"
+                            },
+                            {
+                                "name": "Success (Green)",
+                                "value": "3"
+                            },
+                            {
+                                "name": "Danger (Red)",
+                                "value": "4"
+                            }
+                        ],
+                        "required": false
+                    },
+                    {
+                        "name": "url",
+                        "description": "The URL the button should open.",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "emoji",
+                        "description": "The emoji to display on the button.",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "disabled",
+                        "description": "Whether the button should be disabled.",
+                        "type": 5,
+                        "required": false
+                    },
+                    {
+                        "name": "id",
+                        "description": "The ID of the button.",
+                        "type": 3,
+                        "required": false
+                    }
+                ]
+            }
+        ],
+        "permissions": [
+            "536870912"
+        ]
+    },
+    {
+        "name": "selfrole",
+        "description": "Add a role to the selfrole menu",
+        "category": "Message",
+        "type": "SLASH",
+        "guildOnly": true,
+        "permissions": [
+            "268435456"
+        ],
+        "options": [
+            {
+                "name": "dropdown",
+                "description": "Create / append a role dropdown menu",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "role",
+                        "description": "The role to add to the dropdown",
+                        "type": 8,
+                        "required": true
+                    },
+                    {
+                        "name": "channel",
+                        "description": "The channel to send the dropdown to",
+                        "type": 7,
+                        "required": true,
+                        "channel_types": [
+                            0,
+                            5
+                        ]
+                    },
+                    {
+                        "name": "message_link",
+                        "description": "The message link to add the menu to",
+                        "type": 3,
+                        "required": true
+                    },
+                    {
+                        "name": "placeholder",
+                        "description": "The placeholder text for the dropdown",
+                        "type": 3,
+                        "required": false
+                    }
+                ]
+            },
+            {
+                "name": "button",
+                "description": "Create / append a role button row",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "role",
+                        "description": "The role to link to the button",
+                        "type": 8,
+                        "required": true
+                    },
+                    {
+                        "name": "channel",
+                        "description": "The channel the message is in",
+                        "type": 7,
+                        "required": true,
+                        "channel_types": [
+                            0,
+                            5
+                        ]
+                    },
+                    {
+                        "name": "message_link",
+                        "description": "The message link to add the button to",
+                        "type": 3,
+                        "required": true
+                    },
+                    {
+                        "name": "label",
+                        "description": "The label text for the button",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "emoji",
+                        "description": "The emoji to add to the button",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "style",
+                        "description": "The style of the button",
+                        "type": 3,
+                        "required": false,
+                        "choices": [
+                            {
+                                "name": "Primary (Blue)",
+                                "value": "1"
+                            },
+                            {
+                                "name": "Secondary (Grey)",
+                                "value": "2"
+                            },
+                            {
+                                "name": "Success (Green)",
+                                "value": "3"
+                            },
+                            {
+                                "name": "Danger (Red)",
+                                "value": "4"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "category": "Message",
+        "description": "Sends a message.",
+        "permissions": [
+            "8192"
+        ],
+        "type": "SLASH",
+        "testOnly": false,
+        "guildOnly": true,
+        "options": [
+            {
+                "name": "channel",
+                "description": "The channel to send the text to",
+                "type": 7,
+                "required": true
+            },
+            {
+                "name": "text",
+                "description": "The text to send",
+                "type": 3,
+                "required": true
+            }
+        ],
+        "name": "send"
+    },
+    {
+        "name": "webhook",
+        "description": "Manages the webhooks owned by the bot.",
+        "type": "SLASH",
+        "category": "Message",
+        "options": [
+            {
+                "name": "create",
+                "description": "Creates a new webhook.",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "channel",
+                        "description": "The channel to create the webhook in.",
+                        "type": 7,
+                        "required": true
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name of the webhook.",
+                        "type": 3,
+                        "required": true
+                    }
+                ]
+            },
+            {
+                "name": "list",
+                "description": "Lists all webhooks owned by the bot in the current channel.",
+                "type": 1
+            }
+        ],
+        "permissions": [
+            "536870912"
+        ]
+    },
+    {
+        "category": "Moderation",
+        "description": "Deletes multiple messages at once.",
+        "permissions": [
+            "8192"
+        ],
+        "guildOnly": true,
+        "slash": true,
+        "testOnly": false,
+        "options": [
+            {
+                "name": "amount",
+                "description": "The amount of messages to delete.",
+                "type": 4,
+                "required": true
+            }
+        ],
+        "name": "purge"
+    },
+    {
+        "category": "Moderation",
+        "description": "Warns a user",
+        "permissions": [
+            "1099511627776"
+        ],
+        "slash": true,
+        "testOnly": false,
+        "guildOnly": true,
+        "options": [
+            {
+                "name": "add",
+                "description": "Add a warning to a user",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "user",
+                        "description": "The user to warn",
+                        "type": 6,
+                        "required": true
+                    },
+                    {
+                        "name": "reason",
+                        "description": "The reason for the warning",
+                        "type": 3,
+                        "required": true
+                    }
+                ]
+            },
+            {
+                "name": "remove",
+                "description": "Remove a warning from a user",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "id",
+                        "description": "The ID of the warning to remove",
+                        "type": 3,
+                        "required": true
+                    }
+                ]
+            },
+            {
+                "name": "list",
+                "description": "List all warnings for a user",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "user",
+                        "description": "The user to list warnings for",
+                        "type": 6,
+                        "required": false
+                    }
+                ]
+            }
+        ],
+        "name": "warn"
+    },
+    {
+        "name": "help",
+        "description": "Bring up the help panel",
+        "category": "Other",
+        "testOnly": false,
+        "ownerOnly": false,
+        "type": "SLASH"
+    },
+    {
+        "category": "Other",
+        "description": "Replies with pong",
+        "slash": "both",
+        "testOnly": false,
+        "name": "ping"
+    },
+    {
+        "name": "admin",
+        "description": "All of the commands for the admins of daalbot",
+        "category": "Pen",
+        "type": "SLASH",
+        "options": [
+            {
+                "name": "db",
+                "description": "Just some database tools",
+                "type": 2,
+                "options": [
+                    {
+                        "name": "remove",
+                        "description": "Remove a query from the database",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "user",
+                                "description": "The user to remove",
+                                "type": 6,
+                                "required": false
+                            },
+                            {
+                                "name": "guild",
+                                "description": "The guild to remove",
+                                "type": 3,
+                                "required": false
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "runtime",
+                "description": "Do stuff at runtime",
+                "type": 2,
+                "options": [
+                    {
+                        "name": "eval",
+                        "description": "Evaluate some code",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "code",
+                                "description": "The code to evaluate",
+                                "type": 3,
+                                "required": true
+                            },
+                            {
+                                "name": "attachment",
+                                "description": "attachment",
+                                "type": 11,
+                                "required": false
+                            },
+                            {
+                                "name": "string",
+                                "description": "string",
+                                "type": 3,
+                                "required": false
+                            },
+                            {
+                                "name": "number",
+                                "description": "number",
+                                "type": 10,
+                                "required": false
+                            },
+                            {
+                                "name": "boolean",
+                                "description": "boolean",
+                                "type": 5,
+                                "required": false
+                            },
+                            {
+                                "name": "user",
+                                "description": "user",
+                                "type": 6,
+                                "required": false
+                            },
+                            {
+                                "name": "channel",
+                                "description": "channel",
+                                "type": 7,
+                                "required": false
+                            },
+                            {
+                                "name": "role",
+                                "description": "role",
+                                "type": 8,
+                                "required": false
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "lookup",
+                "description": "Looks up stuff",
+                "type": 2,
+                "options": [
+                    {
+                        "name": "id",
+                        "description": "Looks up an id",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "id",
+                                "description": "The id to look up",
+                                "type": 3,
+                                "required": true
+                            },
+                            {
+                                "name": "type",
+                                "description": "The type of id to look up",
+                                "type": 3,
+                                "required": true,
+                                "choices": [
+                                    {
+                                        "name": "User",
+                                        "value": "user"
+                                    },
+                                    {
+                                        "name": "Channel",
+                                        "value": "channel"
+                                    },
+                                    {
+                                        "name": "Role",
+                                        "value": "role"
+                                    },
+                                    {
+                                        "name": "Guild",
+                                        "value": "guild"
+                                    },
+                                    {
+                                        "name": "Member",
+                                        "value": "member"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "ownerOnly": true
+    },
+    {
+        "name": "exec",
+        "description": "Executes code in the current context (only for developers)",
+        "category": "Pen",
+        "slash": true,
+        "options": [
+            {
+                "name": "code",
+                "description": "The code to execute",
+                "type": 3,
+                "required": true
+            },
+            {
+                "name": "attachment",
+                "description": "attachment",
+                "type": 11,
+                "required": false
+            },
+            {
+                "name": "string",
+                "description": "string",
+                "type": 3,
+                "required": false
+            },
+            {
+                "name": "number",
+                "description": "number",
+                "type": 10,
+                "required": false
+            },
+            {
+                "name": "boolean",
+                "description": "boolean",
+                "type": 5,
+                "required": false
+            },
+            {
+                "name": "user",
+                "description": "user",
+                "type": 6,
+                "required": false
+            },
+            {
+                "name": "channel",
+                "description": "channel",
+                "type": 7,
+                "required": false
+            },
+            {
+                "name": "role",
+                "description": "role",
+                "type": 8,
+                "required": false
+            }
+        ],
+        "ownerOnly": true
+    },
+    {
+        "name": "penalert",
+        "description": "Send a alert in every server with bot alerts configured",
+        "category": "Pen",
+        "slash": true,
+        "testOnly": true,
+        "ownerOnly": true
+    },
+    {
+        "name": "pendelete",
+        "category": "Pen",
+        "description": "Deletes a channel for quick purging",
+        "slash": false,
+        "ownerOnly": true,
+        "testOnly": true
+    },
+    {
+        "category": "Pen",
+        "description": "Pen version of the embed command",
+        "type": "SLASH",
+        "ownerOnly": true,
+        "testOnly": false,
+        "guildOnly": true,
+        "options": [
+            {
+                "name": "builder",
+                "description": "Create an embed",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "channel",
+                        "description": "The channel to send the embed",
+                        "type": 7,
+                        "required": true
+                    },
+                    {
+                        "name": "title",
+                        "description": "The title of the embed",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "url",
+                        "description": "The URL that the embed links to",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "description",
+                        "description": "Sets the description of the embed",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "author",
+                        "description": "Sets the author of the embed",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "footer",
+                        "description": "Sets the footer of the embed",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "colour",
+                        "description": "The colour of the embed",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "thumbnail",
+                        "description": "Sets the thumbnail of the embed",
+                        "type": 11,
+                        "required": false
+                    },
+                    {
+                        "name": "image",
+                        "description": "Sets the main image of the embed",
+                        "type": 11,
+                        "required": false
+                    },
+                    {
+                        "name": "author-icon",
+                        "description": "Sets the icon of the author",
+                        "type": 11,
+                        "required": false
+                    },
+                    {
+                        "name": "footer-icon",
+                        "description": "Sets the icon of the footer",
+                        "type": 11,
+                        "required": false
+                    },
+                    {
+                        "name": "message",
+                        "description": "The message content to send with the embed",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "message-id",
+                        "description": "If used, the embed will be edited / appended to a existing message instead of sending a new one",
+                        "type": 3,
+                        "required": false
+                    }
+                ]
+            },
+            {
+                "name": "json",
+                "description": "Create an embed from JSON",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "channel",
+                        "description": "The channel to send the embed :D",
+                        "type": 7,
+                        "required": true
+                    }
+                ]
+            }
+        ],
+        "name": "penembed"
+    },
+    {
+        "category": "Pen",
+        "description": "penlog",
+        "slash": true,
+        "testOnly": true,
+        "ownerOnly": true,
+        "options": [
+            {
+                "name": "text",
+                "description": "the text to log",
+                "type": 3,
+                "required": true
+            }
+        ],
+        "name": "penlog"
+    },
+    {
+        "name": "pensend",
+        "description": "send but pen :D",
+        "category": "Pen",
+        "type": "SLASH",
+        "ownerOnly": true,
+        "options": [
+            {
+                "name": "builder",
+                "description": "create a new message",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "channel",
+                        "description": "The channel to send the message to.",
+                        "type": 7,
+                        "required": true
+                    },
+                    {
+                        "name": "message",
+                        "description": "The message to send.",
+                        "type": 3,
+                        "required": false
+                    },
+                    {
+                        "name": "attachment",
+                        "description": "The attachment to send.",
+                        "type": 11,
+                        "required": false
+                    }
+                ]
+            },
+            {
+                "name": "json",
+                "description": "send a message from json",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "channel",
+                        "description": "The channel to send the message to.",
+                        "type": 7,
+                        "required": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "category": "Pen",
+        "description": "Restarts the bot",
+        "slash": true,
+        "testOnly": true,
+        "ownerOnly": true,
+        "name": "restart"
+    },
+    {
+        "name": "status",
+        "description": "Change the status of the bot",
+        "category": "Pen",
+        "slash": true,
+        "ownerOnly": true,
+        "testOnly": true,
+        "options": [
+            {
+                "name": "status",
+                "description": "The new status",
+                "type": 3,
+                "required": true
+            },
+            {
+                "name": "type",
+                "description": "The type of status (piny.tv/ActivityTypes)",
+                "type": 3,
+                "required": false
+            }
+        ]
+    },
+    {
+        "name": "social-link",
+        "description": "Modifies social feeds in the server.",
+        "category": "Social",
+        "testOnly": false,
+        "guildOnly": true,
+        "permissions": [
+            "536870912"
+        ],
+        "type": "SLASH",
+        "options": [
+            {
+                "name": "twitch",
+                "description": "Modifies the Twitch feeds for the server.",
+                "type": 2,
+                "options": [
+                    {
+                        "name": "add",
+                        "description": "Adds a Twitch feed to a channel.",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "channel",
+                                "description": "The name of the twitch channel to add.",
+                                "type": 3,
+                                "required": true
+                            },
+                            {
+                                "name": "feed_channel",
+                                "description": "The channel to send the feed to.",
+                                "type": 7,
+                                "required": true
+                            },
+                            {
+                                "name": "role",
+                                "description": "The role to ping when the stream goes live.",
+                                "type": 8,
+                                "required": false
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "bluesky",
+                "description": "Modifies the Bluesky feeds for the server.",
+                "type": 2,
+                "options": [
+                    {
+                        "name": "add",
+                        "description": "Adds a Bluesky feed to a channel.",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "channel",
+                                "description": "The channel to add the feed to.",
+                                "type": 7,
+                                "required": true
+                            },
+                            {
+                                "name": "account",
+                                "description": "The account to add the feed from.",
+                                "type": 3,
+                                "required": true
+                            },
+                            {
+                                "name": "message",
+                                "description": "The message to send when a new post is detected. (must include %%{LINK}%%)",
+                                "type": 3,
+                                "required": true
+                            }
+                        ]
+                    },
+                    {
+                        "name": "remove",
+                        "description": "Removes a Bluesky feed from a channel.",
+                        "type": 1,
+                        "options": [
+                            {
+                                "name": "channel",
+                                "description": "The channel to remove the feed from.",
+                                "type": 7,
+                                "required": true
+                            },
+                            {
+                                "name": "account",
+                                "description": "The account to remove the feed from. (Default: All)",
+                                "type": 3,
+                                "required": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "category": "Testing",
+        "description": "Simulates a join.",
+        "slash": "both",
+        "testOnly": true,
+        "name": "simjoin"
+    },
+    {
+        "category": "Testing",
+        "description": "This command does stuff sometimes.",
+        "slash": true,
+        "testOnly": true,
+        "guildOnly": false,
+        "options": [
+            {
+                "name": "attachment",
+                "description": "attachment",
+                "type": 11,
+                "required": false
+            },
+            {
+                "name": "string",
+                "description": "string",
+                "type": 3,
+                "required": false
+            },
+            {
+                "name": "number",
+                "description": "number",
+                "type": 10,
+                "required": false
+            },
+            {
+                "name": "boolean",
+                "description": "boolean",
+                "type": 5,
+                "required": false
+            },
+            {
+                "name": "user",
+                "description": "user",
+                "type": 6,
+                "required": false
+            },
+            {
+                "name": "channel",
+                "description": "channel",
+                "type": 7,
+                "required": false
+            },
+            {
+                "name": "role",
+                "description": "role",
+                "type": 8,
+                "required": false
+            }
+        ],
+        "name": "test"
+    },
+    {
+        "name": "daily",
+        "description": "Claim your daily rewards",
+        "category": "XP",
+        "type": "SLASH",
+        "guildOnly": true,
+        "testOnly": false
+    },
+    {
+        "name": "xp",
+        "description": "XP management commands",
+        "category": "XP",
+        "slash": true,
+        "guildOnly": true,
+        "testOnly": false,
+        "options": [
+            {
+                "name": "grant",
+                "description": "Modifies the XP of a user",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "user",
+                        "description": "The user to modify the XP of",
+                        "type": 6,
+                        "required": true
+                    },
+                    {
+                        "name": "amount",
+                        "description": "The amount of XP",
+                        "type": 4,
+                        "required": true
+                    },
+                    {
+                        "name": "action",
+                        "description": "The action to perform",
+                        "type": 3,
+                        "required": true,
+                        "choices": [
+                            {
+                                "name": "Add",
+                                "value": "add"
+                            },
+                            {
+                                "name": "Remove",
+                                "value": "remove"
+                            },
+                            {
+                                "name": "Set",
+                                "value": "set"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "reward",
+                "description": "Sets up a reward for levels",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "level",
+                        "description": "The level to grant the reward upon reaching",
+                        "type": 4,
+                        "required": true
+                    },
+                    {
+                        "name": "role",
+                        "description": "The role to grant upon reaching the level",
+                        "type": 8,
+                        "required": true
+                    }
+                ]
+            },
+            {
+                "name": "level",
+                "description": "Shows your or another members level",
+                "type": 1,
+                "options": [
+                    {
+                        "name": "user",
+                        "description": "The user to show the level of",
+                        "type": 6,
+                        "required": false
+                    }
+                ]
+            }
+        ]
+    }
+]

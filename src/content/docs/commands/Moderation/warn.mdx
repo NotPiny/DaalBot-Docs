@@ -1,0 +1,50 @@
+---
+title: Warn Command
+description: Learn how to use the warn command to help moderate your server.
+sidebar:
+    label: Warn
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+<Aside>
+Every command on this page requires the `Manage Members` permission.
+</Aside>
+
+## /warn add
+<Command>
+    <div slot="usage">
+        This command takes in a user and a reason and gives the user a warning.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        user|User|The user to warn|Yes|N/A
+        reason|String|The reason for the warning|Yes|N/A
+    </div>
+</Command>
+
+## /warn remove
+<Command>
+    <div slot="usage">
+        This command takes a warning ID and removes it.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        id|String|The ID of the warning|Yes|N/A
+    </div>
+</Command>
+
+## /warn list
+<Command>
+    <div slot="usage">
+        You can use this command to list out all the warnings in the server or just the warnings for a specific user.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        user|User|The user to list warnings for (shows all users if unspecified)|No|N/A
+    </div>
+</Command>

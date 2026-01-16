@@ -1,0 +1,29 @@
+---
+title: Purge Command
+description: Learn how to use the Purge command to delete multiple messages within a channel in your guild.
+sidebar:
+    label: Purge
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro'
+
+This command allows users to quickly delete many messages at a time.
+
+## /purge
+<Command>
+    <div slot="usage">
+        To purge messages within a channel simply run the command and specify the amount of messages, it will then delete the specified amount of messages in the channel.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        amount|Number|The amount of messages to delete|Yes|N/A
+    </div>
+    <div slot="examples">
+        * `/purge amount:50` - Deletes the last 50 messages within the current channel
+    </div>
+    <div slot="permissions">
+        Both you and the bot need the `Manage Messages` permission for this command to work.
+    </div>
+</Command>

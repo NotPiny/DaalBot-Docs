@@ -1,0 +1,138 @@
+---
+title: Event Command
+description: Commands related to managing events or automated actions within DaalBot.
+sidebar:
+    label: Event
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+<Aside type="tip">
+Looking for more information on how to use events and create your own? Check out our [Events](/features/events/overview) documentation for a comprehensive guide.
+</Aside>
+
+This command allows server administrators to manage events or automated actions within their server. Users can create, edit, delete, and list events that trigger specific actions based on defined conditions.
+
+## /event create
+This command allows users to create a new event that triggers specific actions based on defined conditions. Users can specify the event type and configure its settings.
+<Command>
+    <div slot="usage">
+        Use the command followed by the event type you want to create.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        trigger|String|The type of event to create.|Yes|Message Create, Message Update, Message Delete, Channel Create, Channel Update, Channel Delete, Guild Update, Guild Ban Add, Guild Ban Remove, Guild Member Add, Guild Member Remove, Guild Member Update, Guild Role Create, Guild Role Update, Guild Role Remove, Message Reaction Add, Message Reaction Remove, Interaction Create, Voice State Update, Guild Warn Create, Guild Warn Delete
+    </div>
+    <div slot="examples">
+        * `/event create trigger:Message Create` - Creates a new event that triggers on message creation.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+<Aside>
+Once this command is run you will be prompted to enter the name and description for the event. After that you can edit the code for the event in the [dashboard](https://dashboard.daalbot.xyz/). To learn more about events and how to use them, visit our [Events](/features/events/overview) documentation.
+</Aside>
+
+## /event delete
+This command allows users to delete an existing event from the server.
+<Command>
+    <div slot="usage">
+        Use the command followed by the event ID you want to delete.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        event|String|The ID of the event to delete.|Yes|N/A
+    </div>
+    <div slot="examples">
+        * `/event delete event:abc123` - Deletes the event with the ID "abc123".
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+## /event list
+This command allows users to list all events in the server. It displays the event names, descriptions, triggers, and IDs.
+<Command>
+    <div slot="usage">
+        Use the command to list all events in the server. You can optionally filter by event trigger type.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        trigger|String|The type of event to filter by.|No|Message Create, Message Update, Message Delete, Channel Create, Channel Update, Channel Delete, Guild Update, Guild Ban Add, Guild Ban Remove, Guild Member Add, Guild Member Remove, Guild Member Update, Guild Role Create, Guild Role Update, Guild Role Remove, Message Reaction Add, Message Reaction Remove, Interaction Create, Voice State Update, Guild Warn Create, Guild Warn Delete
+    </div>
+    <div slot="examples">
+        * `/event list` - Lists all events in the server.
+        * `/event list trigger:Message Create` - Lists all events that trigger on message creation.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+## /event share
+This command allows users to share an event, making it public so that other servers can use it.
+<Command>
+    <div slot="usage">
+        Use the command followed by the event ID you want to share.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        event|String|The ID of the event to share.|Yes|N/A
+    </div>
+    <div slot="examples">
+        * `/event share event:abc123` - Shares the event with the ID "abc123".
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+## /event unshare
+This command allows users to unshare an event, making it private so that only the current server can use it.
+<Command>
+    <div slot="usage">
+        Use the command followed by the event ID you want to unshare.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        event|String|The ID of the event to unshare.|Yes|N/A
+    </div>
+    <div slot="examples">  
+        * `/event unshare event:abc123` - Unshares the event with the ID "abc123".
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+## /event import
+This command allows users to import a shared event from another server into their own server.
+<Command>
+    <div slot="usage">
+        Use the command followed by the event ID you want to import.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        event|String|The ID of the event to import.|Yes|N/A
+    </div>
+    <div slot="examples">
+        * `/event import event:abc123` - Imports the shared event with the ID "abc123".
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+<Aside type="caution">
+Due to potential security risks, imported events should be reviewed and edited as necessary to ensure they function as intended within your server's context. Imported events do not automatically update if the original event is changed.
+</Aside>

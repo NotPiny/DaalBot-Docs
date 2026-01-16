@@ -1,0 +1,99 @@
+---
+interface Props {
+    input: Record<string, {
+        description: string;
+        type: string;
+        required: boolean;
+        example?: string;
+    }>;
+}
+
+const { input } = Astro.props;
+---
+
+<table class="param-table">
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        {Object.entries(input).map(([key, value]) => (
+            <tr>
+                <td>
+                    <code>{key}</code>
+                </td>
+                <td>
+                    {value.description}
+                </td>
+                <td>
+                    {value.type}
+                </td>
+                <td>
+                    {value.required ? 'Yes' : 'No'}
+                </td>
+                <td>
+                    {value.example ? (
+                        <code>{value.example}</code>
+                    ) : (
+                        'No example'
+                    )}
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</table>
+
+<style>
+    .param-table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+        background-color: #222;
+        display: table;
+        table-layout: fixed;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .param-table thead {
+        width: 100%;
+    }
+
+    .param-table tbody {
+        width: 100%;
+    }
+
+    .param-table tr {
+        width: 100%;
+    }
+
+    thead {
+        background-color: #2a2a2a;
+    }
+
+    th, td {
+        padding: 0.5rem;
+        text-align: left;
+        border-bottom: 1px solid #444;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        max-width: 0;
+    }
+
+    th {
+        font-weight: 600;
+    }
+
+    code {
+        font-size: 0.9rem;
+        background-color: #1a1a1a;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        white-space: nowrap;
+    }
+</style>

@@ -1,0 +1,33 @@
+---
+title: Welcome Command
+description: Learn how to use the Welcome command to manage welcome messages and settings within your guild.
+sidebar:
+    label: Welcome
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+This command allows server administrators to set up a welcome message that is sent automatically when a new member joins the guild. Users can specify the channel, message content, and an optional embed for the welcome message.
+## /welcome
+This command allows users to set the welcome message settings for the guild.
+<Command>
+    <div slot="usage">
+        Use the command followed by the channel, message, and optional embed JSON.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        channel|Channel|The channel to send the welcome message in.|Yes|Text Channel
+        message|String|The message to send when a user joins the server (Use &lcub;user&rcub; to ping the user).|Yes|N/A
+        embed|String|The embed JSON for the welcome message (Use [this resource](https://glitchii.github.io/embedbuilder) to create).|No|N/A
+    </div>
+    <div slot="examples">
+        * `/welcome channel:#welcome message:Welcome `&lcub;`user`&rcub;` to the server! - Sets a welcome message in the #welcome channel.`
+        * `/welcome channel:#welcome message:Welcome `&lcub;`user`&rcub;` to the server! embed:{"title":"Welcome!","description":"We're glad to have you here."}` - Sets a welcome message with an embed in the #welcome channel.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Guild" permission to use this command.
+        * The bot needs the "Send Messages" permission in the specified channel to send welcome messages.
+    </div>
+</Command>

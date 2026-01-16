@@ -1,0 +1,54 @@
+---
+title: CC Command
+description: Commands related to managing custom commands (CC) within DaalBot.
+sidebar:
+    label: CC
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Command from '$lib/components/Command.astro';
+
+This command allows server administrators to manage custom commands (CC) within their server. Users can create, edit, delete, and list custom commands that can be used by members of the server.
+<Aside type="caution">
+Custom commands are handled using our [events system](/features/events/overview). Events is a powerful yet advanced feature, so it's recommended to know some basic programming concepts and reading through the events documentation before using custom commands.
+</Aside>
+
+## /cc create
+This command allows users to create a custom command.
+<Command>
+    <div slot="usage">
+        Use the command followed by the name, description, and options (if applicable) to create a custom command.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        name|String|The name of the custom command|Yes|N/A
+        description|String|The description of the custom command|Yes|N/A
+        options|String|JSON representation of a [discord.js options array](https://discord.js.org/docs/packages/discord.js/14.25.1/ApplicationCommandOption:TypeAlias)|No|N/A
+    </div>
+    <div slot="examples">
+        * `/cc create name:hello description:Says hello options:[{"name": "user", "type": 6, "description": "The user to say hello to", "required": true}]` - Creates a custom command named "hello" that takes a user option.
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>
+
+## /cc delete
+This command allows users to delete a custom command.
+<Command>
+    <div slot="usage">
+        Use the command followed by the name of the custom command you want to delete.
+    </div>
+    <div slot="params">
+        Parameter|Type|Description|Required|Choices
+        ---|---|---|---|---
+        name|String|The name of the custom command|Yes|N/A
+    </div>
+    <div slot="examples">
+        * `/cc delete name:hello` - Deletes the custom command named "hello".
+    </div>
+    <div slot="permissions">
+        * Users need the "Manage Server" permission to use this command.
+    </div>
+</Command>

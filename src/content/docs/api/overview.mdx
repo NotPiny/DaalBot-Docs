@@ -1,0 +1,52 @@
+---
+title: API Overview
+sidebar:
+    label: Overview
+    order: 0
+---
+
+import RouteList from '../../../components/RouteList.svelte';
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.17.1/cdn/themes/dark.css" />
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.17.1/cdn/components/tag/tag.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.17.1/cdn/components/tooltip/tooltip.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/visually-hidden/visually-hidden.js"></script>
+
+# Introduction
+
+The DaalBot API is a RESTful API that allows you to interact with DaalBot and its features. The API is designed to be easy to use and understand, now with new and improved documentation! (Unlike V1 which was all AI generated documentation this is all handwritten)
+
+# Authentication
+
+There are two types of authentication that most users can use (others are for internal use only):
+
+- **User**: This is the kind of authentication and is used by the dashboard, it requires a Discord OAuth2 token from the bot and can be used to perform actions on multiple guilds with one token or as a specific user.
+
+- **Guild**: This can be used to create automated systems that can interact with the bot through the API. For example, you can use this with the event template in the CLI to automatically upload your events on save.
+
+## Obtaining a User Token
+
+In order to obtain a user token, you need to get the user to log in to the DaalBot dashboard (they will be prompted to do so if they aren't already). Once they are logged in, you can send them to the following URL: `https://dashboard.daalbot.xyz/get-token`
+
+This page accepts a two query parameters:
+
+- `return` - The URL to redirect the user to after they have logged in. This is required. (if set to `show`, it will simply show the token in a pop-up instead of redirecting. This is useful for testing; however, it is not recommended for production use)
+
+- `name` - The name of your app, by default your redirect URL will be shown as your app name. When specified the name will be shown instead in most places however your redirect URL will also be shown to allow the user to know where they are being redirected to. This is optional.
+
+## Obtaining a Guild Key
+
+In order to obtain a guild key, you need to first be in the DaalBot support server. If you are not, you can join [here](https://go.daalbot.xyz/HQ). Once you are in the server, go to a channel where you can run commands and run the command `/api keys generate`, this will walk you through the process of generating a key and how to use it. You can only generate a key for a guild that you are the owner of.
+
+## Using dashboard routes
+
+Dashboard routes require either a guild key or a user token to be passed in the authorization header. The format for the authorization header is simply `Authorization: ['Guild' | 'User'] [Token]`, you also need to pass the guild ID in the query; however, this is already expressed in the per route documentation.
+
+# Routes
+
+The following are the routes that are available in the DaalBot API.
+
+You can click on the route to view the source code on GitHub or click the background to view the parameters and other info.
+
+<RouteList client:load />
+
