@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 This command allows server administrators to create interactive button messages within their guild. Users can set up messages with buttons that members can click to perform specific actions, such as assigning roles or triggering events.
 
@@ -21,15 +22,44 @@ This command allows users to add a button to an existing message. Users can spec
         Use the command followed by the message ID, button label, and optional parameters.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        message|String|The ID of the message to add the button to.|Yes|N/A
-        label|String|The label of the button.|Yes|N/A
-        style|String|The style of the button.|No|Primary (Blue), Secondary (Grey), Success (Green), Danger (Red)
-        url|String|The URL the button should open.|No|N/A
-        emoji|String|The emoji to display on the button.|No|N/A
-        disabled|Boolean|Whether the button should be disabled.|No|N/A
-        id|String|The ID of the button.|No|N/A
+        <ParamTable input={{
+            message: {
+                description: "The ID of the message to add the button to.",
+                type: "String",
+                required: true
+            },
+            label: {
+                description: "The label of the button.",
+                type: "String",
+                required: true
+            },
+            style: {
+                description: "The style of the button.",
+                type: "String",
+                required: false,
+                choices: "Primary (Blue), Secondary (Grey), Success (Green), Danger (Red)"
+            },
+            url: {
+                description: "The URL the button should open.",
+                type: "String",
+                required: false
+            },
+            emoji: {
+                description: "The emoji to display on the button.",
+                type: "String",
+                required: false
+            },
+            disabled: {
+                description: "Whether the button should be disabled.",
+                type: "Boolean",
+                required: false
+            },
+            id: {
+                description: "The ID of the button.",
+                type: "String",
+                required: false
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/button add message:123456789012345678 label:Click Me style:Primary` - Adds a primary button labelled "Click Me" to the specified message.

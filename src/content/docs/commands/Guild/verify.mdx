@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 This command allows server administrators to set up a verification system within their guild. Users can create a verification message with a button that members can click to receive a specified role.
 
@@ -21,9 +22,13 @@ This command allows users to create a verification message in a specified channe
         Use the command followed by the role you want to assign to verified users.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        verified_role|Role|The role to assign to verified users.|Yes|N/A
+        <ParamTable input={{
+            verified_role: {
+                description: "The role to assign to verified users.",
+                type: "Role",
+                required: true
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/verify verified_role:@Member` - Creates a verification message in the current channel that assigns the @Member role to verified users.

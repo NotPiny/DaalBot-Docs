@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 This command allows server administrators to manage support tickets within their guild. Users can create ticket panels that allow members to open support tickets easily.
 
@@ -17,11 +18,25 @@ This command allows users to create a ticket panel in a specified channel. Membe
         Use the command followed by the channel you want to create the ticket panel in.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        channel|Channel|The channel to create the ticket panel in.|Yes|Text Channel
-        channel-name|String|Ticket channel name. Use `%%{ticketCount}%%` to add the ticket number.|No|N/A
-        category|Channel|The category for the ticket channels to be created in.|No|Category
+        <ParamTable input={{
+            channel: {
+                description: "The channel to create the ticket panel in.",
+                type: "Channel",
+                required: true,
+                choices: "Text Channel"
+            },
+            "channel-name": {
+                description: "Ticket channel name. Use `%%{ticketCount}%%` to add the ticket number.",
+                type: "String",
+                required: false
+            },
+            category: {
+                description: "The category for the ticket channels to be created in.",
+                type: "Channel",
+                required: false,
+                choices: "Category"
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/ticket panel create channel:#support category:#tickets channel-name:help-%%{ticketCount}%%` - Creates a ticket panel in the #support channel with ticket channels named help-1, help-2, etc. under the #tickets category.

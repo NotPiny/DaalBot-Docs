@@ -6,6 +6,7 @@ sidebar:
 ---
 
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 This command allows server administrators to manage the economy system within their server. Users can add, remove, set, or view the coin balance of other users.
 
@@ -16,11 +17,24 @@ This command allows server administrators to manage the economy system within th
         Use the command followed by the user, action, and amount (if applicable) to modify a user's coin balance.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        user|User|The user to modify|Yes|N/A
-        action|String|The action to perform|Yes|Add, Remove, Set, View
-        amount|Integer|The amount to modify the user's coins by|No|N/A
+        <ParamTable input={{
+            user: {
+                description: "The user to modify",
+                type: "User",
+                required: true
+            },
+            action: {
+                description: "The action to perform",
+                type: "String",
+                required: true,
+                choices: "Add, Remove, Set, View"
+            },
+            amount: {
+                description: "The amount to modify the user's coins by",
+                type: "Integer",
+                required: false
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/economy user:@User action:add amount:100` - Adds 100 coins to the specified user's balance.

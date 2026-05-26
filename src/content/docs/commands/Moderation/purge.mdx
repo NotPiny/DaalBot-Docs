@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro'
+import ParamTable from '$lib/components/ParamTable.astro';
 
 This command allows users to quickly delete many messages at a time.
 
@@ -16,9 +17,13 @@ This command allows users to quickly delete many messages at a time.
         To purge messages within a channel simply run the command and specify the amount of messages, it will then delete the specified amount of messages in the channel.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        amount|Number|The amount of messages to delete|Yes|N/A
+        <ParamTable input={{
+            amount: {
+                description: "The amount of messages to delete",
+                type: "Number",
+                required: true
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/purge amount:50` - Deletes the last 50 messages within the current channel

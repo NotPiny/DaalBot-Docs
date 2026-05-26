@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 <Aside type="tip">
 Looking for something more advanced? Check out the [Message Builder feature](/features/dashboard/message-builder) for creating custom messages with the new Discord Components V2!
@@ -20,10 +21,19 @@ This command allows users to send a message to a specified channel.
         Use the command followed by the channel and message.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        channel|Channel|The channel to send the message in.|Yes|Text Channel, Announcement Channel
-        text|String|The message to send in the specified channel.|Yes|N/A
+        <ParamTable input={{
+            channel: {
+                description: "The channel to send the message in.",
+                type: "Channel",
+                required: true,
+                choices: "Text Channel, Announcement Channel"
+            },
+            text: {
+                description: "The message to send in the specified channel.",
+                type: "String",
+                required: true
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/send channel:#general text:Hello everyone!` - Sends "Hello everyone!" to the #general channel.

@@ -59,7 +59,6 @@ async function handlePage(command: Command): Promise<void> {
 	await ensureDir(`../src/content/docs/commands/${categoryFolder}`);
 	try {
 		await Deno.writeTextFile(`../src/content/docs/commands/${categoryFolder}/${command.name}.mdx`, pageContent, {
-			// Do not overwrite existing files
 			createNew: true
 		});
 	} catch (error) {
@@ -74,13 +73,11 @@ async function handlePage(command: Command): Promise<void> {
 function handleCommand(command: Command | CommandOption, history: string[] = [], inheritedPermissions?: string[]): string {
 	console.log(`Command: ${command.name}`);
 
-	// Check if this command has subcommands
 	const hasSubcommands = command.options && command.options[0] &&
 		(command.options[0].type === ApplicationCommandOptionType.Subcommand ||
 			command.options[0].type === ApplicationCommandOptionType.SubcommandGroup);
 
 	if (hasSubcommands) {
-		// If it has subcommands, don't output this level, just process subcommands
 		let output = '';
 		const perms = ('permissions' in command && command.permissions) ? command.permissions as string[] : inheritedPermissions;
 		command.options!.forEach(subCmd => {
@@ -90,16 +87,14 @@ function handleCommand(command: Command | CommandOption, history: string[] = [],
 		return output;
 	}
 
-	// Build full command path
 	const fullPath = [...history, command.name].join(' ');
 
-	// Filter out subcommands/subcommand groups from regular parameters
+	// filter out subcommand types from the regular params list
 	const regularParams = command.options?.filter(opt =>
 		opt.type !== ApplicationCommandOptionType.Subcommand &&
 		opt.type !== ApplicationCommandOptionType.SubcommandGroup
 	);
 
-	// Use inherited permissions if this command doesn't have its own
 	const permissions = ('permissions' in command && command.permissions)
 		? command.permissions as string[]
 		: inheritedPermissions;
@@ -120,8 +115,7 @@ ${regularParams && regularParams.length > 0 ? `	<div slot="params">
 
 ` : ''}${permissions ? `	<div slot="permissions">
 		${permissions.map(perm => {
-		// This is just a array of big integers as strings, so we convert them to numbers first
-		const permBigInt = BigInt(perm);
+			// permissions are stored as bigint strings
 
 		const permName = Object.keys(PermissionFlagsBits).find(key => PermissionFlagsBits[key as keyof typeof PermissionFlagsBits] === permBigInt);
 		const prettyName = permName ? permName.split(/(?=[A-Z])/).join(' ') : 'Unknown Permission';

@@ -1,10 +1,13 @@
 ---
+import { marked } from 'marked';
+
 interface Props {
     input: Record<string, {
         description: string;
         type: string;
         required: boolean;
         example?: string;
+        choices?: string;
     }>;
 }
 
@@ -19,6 +22,7 @@ const { input } = Astro.props;
                 <th>Description</th>
                 <th>Type</th>
                 <th>Required</th>
+                <th>Choices</th>
                 <th>Example</th>
             </tr>
         </thead>
@@ -29,7 +33,7 @@ const { input } = Astro.props;
                         <code class="param-name">{key}</code>
                     </td>
                     <td>
-                        {value.description}
+                        <Fragment set:html={marked.parseInline(value.description)} />
                     </td>
                     <td>
                         <span class="type-pill">{value.type}</span>
@@ -38,6 +42,13 @@ const { input } = Astro.props;
                         <span class={`req-badge ${value.required ? 'required' : ''}`}>
                             {value.required ? 'Required' : 'Optional'}
                         </span>
+                    </td>
+                    <td>
+                        {value.choices ? (
+                            <span class="choices-text"><Fragment set:html={marked.parseInline(value.choices)} /></span>
+                        ) : (
+                            <span class="muted-text">None</span>
+                        )}
                     </td>
                     <td>
                         {value.example ? (
@@ -147,5 +158,10 @@ const { input } = Astro.props;
         color: var(--md-sys-color-outline, var(--sl-color-gray-2));
         font-size: 0.85rem;
         font-style: italic;
+    }
+
+    .choices-text {
+        font-size: 0.85rem;
+        color: var(--md-sys-color-on-surface-variant, var(--sl-color-text));
     }
 </style>

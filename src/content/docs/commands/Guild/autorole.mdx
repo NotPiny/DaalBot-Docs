@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 This command allows server administrators to manage autoroles within their server. Users can set up roles that are automatically assigned to new members when they join the server.
 
@@ -21,9 +22,13 @@ This command allows users to add a role to the autorole list. When a new member 
         Use the command followed by the role you want to add to the autorole list.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        role|Role|The role to add to the autorole list.|Yes|N/A
+        <ParamTable input={{
+            role: {
+                description: "The role to add to the autorole list.",
+                type: "Role",
+                required: true
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/autorole add role:@Member` - Adds the "Member" role to the autorole list.
@@ -41,9 +46,13 @@ This command allows users to remove a role from the autorole list. The role will
         Use the command followed by the role you want to remove from the autorole list.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        role|Role|The role to remove from the autorole list.|Yes|N/A
+        <ParamTable input={{
+            role: {
+                description: "The role to remove from the autorole list.",
+                type: "Role",
+                required: true
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/autorole remove role:@Member` - Removes the "Member" role from the autorole list.

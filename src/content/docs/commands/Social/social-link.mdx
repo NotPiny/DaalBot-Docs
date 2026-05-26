@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 <Aside type="caution">
     This page was automatically generated from command data, if you know more about this command please edit this page. The source code can be found [here](https://github.com/DaalBot/Discord/tree/main/commands/Social/social-link.js).
@@ -17,11 +18,23 @@ Adds a Twitch feed to a channel.
 
 <Command>
 	<div slot="params">
-		Parameter|Type|Description|Required|Choices
-		---|---|---|---|---
-		channel|String|The name of the twitch channel to add.|Yes|N/A
-		feed_channel|Channel|The channel to send the feed to.|Yes|N/A
-		role|Role|The role to ping when the stream goes live.|No|N/A
+		<ParamTable input={{
+			channel: {
+				description: "The name of the twitch channel to add.",
+				type: "String",
+				required: true
+			},
+			feed_channel: {
+				description: "The channel to send the feed to.",
+				type: "Channel",
+				required: true
+			},
+			role: {
+				description: "The role to ping when the stream goes live.",
+				type: "Role",
+				required: false
+			}
+		}} />
 	</div>
 
 	<div slot="permissions">
@@ -34,11 +47,23 @@ Adds a Bluesky feed to a channel.
 
 <Command>
 	<div slot="params">
-		Parameter|Type|Description|Required|Choices
-		---|---|---|---|---
-		channel|Channel|The channel to add the feed to.|Yes|N/A
-		account|String|The account to add the feed from.|Yes|N/A
-		message|String|The message to send when a new post is detected. (must include %%\{LINK\}%%)|Yes|N/A
+		<ParamTable input={{
+			channel: {
+				description: "The channel to add the feed to.",
+				type: "Channel",
+				required: true
+			},
+			account: {
+				description: "The account to add the feed from.",
+				type: "String",
+				required: true
+			},
+			message: {
+				description: "The message to send when a new post is detected. (must include %%\\{LINK\\}%%)",
+				type: "String",
+				required: true
+			}
+		}} />
 	</div>
 
 	<div slot="permissions">
@@ -51,10 +76,18 @@ Removes a Bluesky feed from a channel.
 
 <Command>
 	<div slot="params">
-		Parameter|Type|Description|Required|Choices
-		---|---|---|---|---
-		channel|Channel|The channel to remove the feed from.|Yes|N/A
-		account|String|The account to remove the feed from. (Default: All)|No|N/A
+		<ParamTable input={{
+			channel: {
+				description: "The channel to remove the feed from.",
+				type: "Channel",
+				required: true
+			},
+			account: {
+				description: "The account to remove the feed from. (Default: All)",
+				type: "String",
+				required: false
+			}
+		}} />
 	</div>
 
 	<div slot="permissions">

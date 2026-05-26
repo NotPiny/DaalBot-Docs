@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 This command allows server administrators to create self-assignable role messages within their guild. Users can set up messages with buttons or dropdown menus that members can interact with to assign or remove roles from themselves.
 
@@ -27,14 +28,40 @@ This command allows users to create or append a role button to an existing messa
         Use the command followed by the role, channel, message link, and optional parameters.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        role|Role|The role to link to the button.|Yes|N/A
-        channel|Channel|The channel the message is in.|Yes|Text Channel, Announcement Channel
-        message_link|String|The message link to add the button to.|Yes|N/A
-        label|String|The label text for the button.|No|N/A
-        emoji|String|The emoji to add to the button.|No|N/A
-        style|String|The style of the button.|No|Primary (Blue), Secondary (Grey), Success (Green), Danger (Red)
+        <ParamTable input={{
+            role: {
+                description: "The role to link to the button.",
+                type: "Role",
+                required: true
+            },
+            channel: {
+                description: "The channel the message is in.",
+                type: "Channel",
+                required: true,
+                choices: "Text Channel, Announcement Channel"
+            },
+            message_link: {
+                description: "The message link to add the button to.",
+                type: "String",
+                required: true
+            },
+            label: {
+                description: "The label text for the button.",
+                type: "String",
+                required: false
+            },
+            emoji: {
+                description: "The emoji to add to the button.",
+                type: "String",
+                required: false
+            },
+            style: {
+                description: "The style of the button.",
+                type: "String",
+                required: false,
+                choices: "Primary (Blue), Secondary (Grey), Success (Green), Danger (Red)"
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/selfrole button role:@Gamer channel:#roles message_link:https://discord.com/channels/123456789012345678/234567890123456789/345678901234567890 label:Join Gamer emoji:🎮 style:Primary` - Adds a primary button to the specified message that assigns the "Gamer" role.
@@ -48,12 +75,29 @@ This command allows users to create or append a role dropdown menu to an existin
         Use the command followed by the role, channel, message link, and optional parameters.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        role|Role|The role to add to the dropdown.|Yes|N/A
-        channel|Channel|The channel to send the dropdown to.|Yes|Text Channel, Announcement Channel
-        message_link|String|The message link to add the menu to.|Yes|N/A
-        placeholder|String|The placeholder text for the dropdown.|No|N/A
+        <ParamTable input={{
+            role: {
+                description: "The role to add to the dropdown.",
+                type: "Role",
+                required: true
+            },
+            channel: {
+                description: "The channel to send the dropdown to.",
+                type: "Channel",
+                required: true,
+                choices: "Text Channel, Announcement Channel"
+            },
+            message_link: {
+                description: "The message link to add the menu to.",
+                type: "String",
+                required: true
+            },
+            placeholder: {
+                description: "The placeholder text for the dropdown.",
+                type: "String",
+                required: false
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/selfrole dropdown role:@Gamer channel:#roles message_link:https://discord.com/channels/123456789012345678/234567890123456789/345678901234567890 placeholder:Select your roles` - Adds a dropdown menu to the specified message with the "Gamer" role as an option.

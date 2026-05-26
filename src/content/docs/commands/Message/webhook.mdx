@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 This command allows server administrators to manage webhooks owned by the bot within their guild. Users can create new webhooks in specified channels or list existing webhooks owned by the bot.
 
@@ -21,10 +22,19 @@ This command allows users to create a new webhook in a specified channel.
         Use the command followed by the channel and webhook name.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        channel|Channel|The channel to create the webhook in.|Yes|Text Channel, Announcement Channel
-        name|String|The name of the webhook.|Yes|N/A
+        <ParamTable input={{
+            channel: {
+                description: "The channel to create the webhook in.",
+                type: "Channel",
+                required: true,
+                choices: "Text Channel, Announcement Channel"
+            },
+            name: {
+                description: "The name of the webhook.",
+                type: "String",
+                required: true
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/webhook create channel:#general name:My Webhook` - Creates a webhook named "My Webhook" in the #general channel.

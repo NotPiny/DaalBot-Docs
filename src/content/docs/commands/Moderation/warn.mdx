@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 <Aside>
 Every command on this page requires the `Manage Members` permission.
@@ -18,10 +19,18 @@ Every command on this page requires the `Manage Members` permission.
         This command takes in a user and a reason and gives the user a warning.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        user|User|The user to warn|Yes|N/A
-        reason|String|The reason for the warning|Yes|N/A
+        <ParamTable input={{
+            user: {
+                description: "The user to warn",
+                type: "User",
+                required: true
+            },
+            reason: {
+                description: "The reason for the warning",
+                type: "String",
+                required: true
+            }
+        }} />
     </div>
 </Command>
 
@@ -31,9 +40,13 @@ Every command on this page requires the `Manage Members` permission.
         This command takes a warning ID and removes it.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        id|String|The ID of the warning|Yes|N/A
+        <ParamTable input={{
+            id: {
+                description: "The ID of the warning",
+                type: "String",
+                required: true
+            }
+        }} />
     </div>
 </Command>
 
@@ -43,8 +56,12 @@ Every command on this page requires the `Manage Members` permission.
         You can use this command to list out all the warnings in the server or just the warnings for a specific user.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        user|User|The user to list warnings for (shows all users if unspecified)|No|N/A
+        <ParamTable input={{
+            user: {
+                description: "The user to list warnings for (shows all users if unspecified)",
+                type: "User",
+                required: false
+            }
+        }} />
     </div>
 </Command>

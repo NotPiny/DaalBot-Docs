@@ -7,17 +7,31 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 ## /xp grant
 Modifies the XP of a user
 
 <Command>
 	<div slot="params">
-		Parameter|Type|Description|Required|Choices
-		---|---|---|---|---
-		user|User|The user to modify the XP of|Yes|N/A
-		amount|Integer|The amount of XP|Yes|N/A
-		action|String|The action to perform|Yes|Add, Remove, Set
+		<ParamTable input={{
+			user: {
+				description: "The user to modify the XP of",
+				type: "User",
+				required: true
+			},
+			amount: {
+				description: "The amount of XP",
+				type: "Integer",
+				required: true
+			},
+			action: {
+				description: "The action to perform",
+				type: "String",
+				required: true,
+				choices: "Add, Remove, Set"
+			}
+		}} />
 	</div>
 	<div slot="permissions">
 		* You need the moderate members permission to use this command.
@@ -32,10 +46,18 @@ Assigning roles to members requires DaalBot to have the appropriate permissions 
 
 <Command>
 	<div slot="params">
-		Parameter|Type|Description|Required|Choices
-		---|---|---|---|---
-		level|Integer|The level to grant the reward upon reaching|Yes|N/A
-		role|Role|The role to grant upon reaching the level|Yes|N/A
+		<ParamTable input={{
+			level: {
+				description: "The level to grant the reward upon reaching",
+				type: "Integer",
+				required: true
+			},
+			role: {
+				description: "The role to grant upon reaching the level",
+				type: "Role",
+				required: true
+			}
+		}} />
 	</div>
 	<div slot="permissions">
 		* You need the manage roles permission to use this command.
@@ -46,9 +68,13 @@ Shows your or another members level
 
 <Command>
 	<div slot="params">
-		Parameter|Type|Description|Required|Choices
-		---|---|---|---|---
-		user|User|The user to show the level of|No|N/A
+		<ParamTable input={{
+			user: {
+				description: "The user to show the level of",
+				type: "User",
+				required: false
+			}
+		}} />
 	</div>
 
 </Command>

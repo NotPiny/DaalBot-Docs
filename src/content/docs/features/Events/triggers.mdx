@@ -31,4 +31,33 @@ messageDelete | Triggered when a message is deleted from a channel | message
 messageReactionAdd | Triggered when a reaction is added to a message | reaction
 messageReactionRemove | Triggered when a reaction is removed from a message | reaction
 messageUpdate | Triggered when a message is edited in a channel | message
+HTTP | Triggered via a HTTP request to `https://discord.daalbot.xyz/events/[EventID]` | http
 
+## Data Types
+Name | Type
+---|---
+channelCreate | [Channel](https://discord.js.org/docs/packages/discord.js/14.26.4/Channel:TypeAlias)
+channelDelete | [Channel](https://discord.js.org/docs/packages/discord.js/14.26.4/Channel:TypeAlias)
+channelUpdate | \{old: [Channel](https://discord.js.org/docs/packages/discord.js/14.26.4/Channel:TypeAlias), new: [Channel](https://discord.js.org/docs/packages/discord.js/14.26.4/Channel:TypeAlias)\}
+guildBanAdd | [Ban](https://discord.js.org/docs/packages/discord.js/14.26.4/GuildBan:Class)
+guildBanRemove | [Ban](https://discord.js.org/docs/packages/discord.js/14.26.4/GuildBan:Class)
+guildMemberAdd | [GuildMember](https://discord.js.org/docs/packages/discord.js/14.26.4/GuildMember:Class)
+guildMemberRemove | [GuildMember](https://discord.js.org/docs/packages/discord.js/14.26.4/GuildMember:Class)
+guildMemberUpdate | \{old: [GuildMember](https://discord.js.org/docs/packages/discord.js/14.26.4/GuildMember:Class), new: [GuildMember](https://discord.js.org/docs/packages/discord.js/14.26.4/GuildMember:Class)\}
+guildRoleCreate | [Role](https://discord.js.org/docs/packages/discord.js/14.26.4/Role:Class)
+guildRoleDelete | [Role](https://discord.js.org/docs/packages/discord.js/14.26.4/Role:Class)
+guildRoleUpdate | \{old: [Role](https://discord.js.org/docs/packages/discord.js/14.26.4/Role:Class), new: [Role](https://discord.js.org/docs/packages/discord.js/14.26.4/Role:Class)\}
+guildUpdate | \{old: [Guild](https://discord.js.org/docs/packages/discord.js/14.26.4/Guild:Class), new: [Guild](https://discord.js.org/docs/packages/discord.js/14.26.4/Guild:Class)\}
+guildWarnCreate | \{subject: string,by: string,time: number,id: string,reason: string\}
+guildWarnDelete | \{subject: string,by: string,time: number,id: string,reason: string\}
+interactionCreate | [Interaction](https://discord.js.org/docs/packages/discord.js/14.26.4/Interaction:TypeAlias)
+messageCreate | [Message](https://discord.js.org/docs/packages/discord.js/14.26.4/Message:Class)
+messageDelete | [Message](https://discord.js.org/docs/packages/discord.js/14.26.4/Message:Class)
+messageReactionAdd | [MessageReaction](https://discord.js.org/docs/packages/discord.js/14.26.4/MessageReaction:Class)
+messageReactionRemove | [MessageReaction](https://discord.js.org/docs/packages/discord.js/14.26.4/MessageReaction:Class)
+messageUpdate | \{old: [Message](https://discord.js.org/docs/packages/discord.js/14.26.4/Message:Class), new: [Message](https://discord.js.org/docs/packages/discord.js/14.26.4/Message:Class)\}
+HTTP | \{guild: [Guild](https://discord.js.org/docs/packages/discord.js/14.26.4/Guild:Class), req: [Express.Request](https://expressjs.com/en/5x/api/request/), res: [Express.Response](https://expressjs.com/en/5x/api/response/)\}
+
+## Quirks
+### HTTP
+HTTP events will trigger regardless of the method that is used in the request. This means that GET, POST, PUT, and DELETE requests will all trigger the same code. The event code can check the method of the request using `http.req.method` to differentiate between different types of requests if needed.

@@ -1,13 +1,11 @@
 ---
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-// Get all the named slots
 const hasUsage = Astro.slots.has('usage');
 const hasParams = Astro.slots.has('params');
 const hasExamples = Astro.slots.has('examples');
 const hasPermissions = Astro.slots.has('permissions');
 
-// Only render Tabs if at least one slot is provided
 const hasAnySlot = hasUsage || hasParams || hasExamples || hasPermissions;
 ---
 

@@ -5,11 +5,11 @@ import starlightLinksValidator from 'starlight-links-validator'
 
 import svelte from '@astrojs/svelte';
 
-// https://astro.build/config
 export default defineConfig({
     integrations: [starlight({
         plugins: [starlightLinksValidator()],
         title: 'DaalBot Docs',
+        customCss: ['./src/styles/m3-theme.css'],
         social: [
             {
                 icon: 'github',

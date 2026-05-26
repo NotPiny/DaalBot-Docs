@@ -7,6 +7,7 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Command from '$lib/components/Command.astro';
+import ParamTable from '$lib/components/ParamTable.astro';
 
 This command allows server administrators to manage roles within their guild. Users can link roles together so that when one role is assigned or removed, the linked role is also assigned or removed automatically.
 
@@ -21,11 +22,24 @@ This command allows users to link two roles together. When one role is assigned 
         Use the command followed by the two roles you want to link.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        role1|Role|The first role to link.|Yes|N/A
-        role2|Role|The second role to link.|Yes|N/A
-        reverse|Boolean|Whether to link the roles both ways.|No|True, False
+        <ParamTable input={{
+            role1: {
+                description: "The first role to link.",
+                type: "Role",
+                required: true
+            },
+            role2: {
+                description: "The second role to link.",
+                type: "Role",
+                required: true
+            },
+            reverse: {
+                description: "Whether to link the roles both ways.",
+                type: "Boolean",
+                required: false,
+                choices: "True, False"
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/roles link add role1:@RoleA role2:@RoleB` - Links RoleA and RoleB together.
@@ -44,11 +58,24 @@ This command allows users to unlink two previously linked roles. When one role i
         Use the command followed by the two roles you want to unlink.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        role1|Role|The first role to unlink.|Yes|N/A
-        role2|Role|The second role to unlink.|Yes|N/A
-        reverse|Boolean|Whether to unlink the roles both ways.|No|True, False
+        <ParamTable input={{
+            role1: {
+                description: "The first role to unlink.",
+                type: "Role",
+                required: true
+            },
+            role2: {
+                description: "The second role to unlink.",
+                type: "Role",
+                required: true
+            },
+            reverse: {
+                description: "Whether to unlink the roles both ways.",
+                type: "Boolean",
+                required: false,
+                choices: "True, False"
+            }
+        }} />
     </div>
     <div slot="examples">
         * `/roles link remove role1:@RoleA role2:@RoleB` - Unlinks RoleA and RoleB.
@@ -67,10 +94,18 @@ This command allows users to list all roles linked to a specific role, or check 
         Use the command followed by the role you want to check, and optionally a second role to see if they are linked.
     </div>
     <div slot="params">
-        Parameter|Type|Description|Required|Choices
-        ---|---|---|---|---
-        role1|Role|The role to view linked roles for.|Yes|N/A
-        role2|Role|The second role to check if linked.|No|N/A
+        <ParamTable input={{
+            role1: {
+                description: "The role to view linked roles for.",
+                type: "Role",
+                required: true
+            },
+            role2: {
+                description: "The second role to check if linked.",
+                type: "Role",
+                required: false
+            }
+        }} />
     </div>
     <div slot="examples">  
         * `/roles link list role1:@RoleA` - Lists all roles linked to RoleA.
