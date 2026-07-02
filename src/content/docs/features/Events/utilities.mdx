@@ -259,7 +259,14 @@ Setting the permissions for newly created tickets:
 ```js
 await util.features.tickets.legacy.setPermissions('1234567890123456789', 'allow'); // (roleId, action - "allow" | "deny")
 ```
+#### V2
+The namespace `util.features.tickets.v2` provides methods for interacting with the new Tickets V2 feature.
+
+If you want to create a ticket, you can use the `createTicket` method:
+```js
+const ticketId = await util.features.tickets.v2.createTicket(guild, panelId, member); // (guild, panelId, member?)
+```
 
 <Aside>
-Tickets V2 support is coming soon! Keep an eye on this page and join our [support server](https://go.daalbot.xyz/HQ) for updates.
+Full Tickets V2 support is coming soon! Keep an eye on this page and join our [support server](https://go.daalbot.xyz/HQ) for updates.
 </Aside>
